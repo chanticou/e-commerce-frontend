@@ -84,7 +84,7 @@ export const NavBar = () => {
               ))}
               {/* Thrist link */}
               <Nav.Link>
-                <Button
+                {/* <Button
                   variant="outline-light"
                   onClick={(e) => {
                     e.preventDefault();
@@ -92,7 +92,7 @@ export const NavBar = () => {
                   }}
                 >
                   All
-                </Button>
+                </Button> */}
               </Nav.Link>
 
               {/* cuarto link */}
@@ -103,9 +103,7 @@ export const NavBar = () => {
               )}
 
               {/* login link */}
-              <Nav.Link>
-                <Loguin />
-              </Nav.Link>
+              <Nav.Link>{/* <Loguin /> */}</Nav.Link>
 
               {/* cart link */}
               <Nav.Link as={Link} to="/cart">

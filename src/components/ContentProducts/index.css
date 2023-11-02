@@ -58,3 +58,42 @@ body {
 .href {
   text-decoration: none;
 }
+
+/* PROXIMAMENTE */
+.coming-soon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Ajusta según necesites */
+  background-color: #121212; /* Color de fondo oscuro */
+  position: relative;
+  overflow: hidden;
+}
+
+.coming-soon-text {
+  font-size: 3rem;
+  color: #00ffa3; /* Color verde futurista */
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  animation: glowAnimation 1.5s infinite alternate;
+  font-weight: bold;
+}
+
+@keyframes glowAnimation {
+  0% {
+    text-shadow: 0 0 5px #00ffa3, 0 0 10px #00ffa3, 0 0 15px #ff00ff,
+      0 0 20px #ff00ff, 0 0 25px #ff00ff, 0 0 30px #ff00ff, 0 0 35px #ff00ff;
+  }
+  100% {
+    text-shadow: 0 0 10px #00ffa3, 0 0 20px #00ffa3, 0 0 25px #ff00ff,
+      0 0 30px #ff00ff, 0 0 35px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff,
+      0 0 75px #ff00ff;
+  }
+}
+
+/* MOBILE */
+@media (min-width: 250px) and (max-width: 480px) {
+  .coming-soon-text {
+    font-size: 2rem;
+  }
+}

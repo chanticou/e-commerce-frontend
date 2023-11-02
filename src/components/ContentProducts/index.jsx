@@ -49,19 +49,21 @@ export const ContentProducts = () => {
 
   return (
     <>
-      <div className="content-cards">
+      {/* <div className="content-cards">
         {productsToShow?.length &&
           productsToShow.map((el) => (
             <Products key={el.id_Product} data={el} />
           ))}
+      </div> */}
+      <div className="coming-soon-container">
+        <h1 className="coming-soon-text">PRÓXIMAMENTE...</h1>
       </div>
-
-      <Pagination
+      {/* <Pagination
         currentPage={currentPage} //1
         totalProducts={totalProducts} //6
         productsPerPage={productsPerPage} //0
         onPageChange={handlePageChange}
-      />
+      /> */}
     </>
   );
 };
