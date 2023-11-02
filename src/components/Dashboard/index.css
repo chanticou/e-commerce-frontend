@@ -1,0 +1,166 @@
+/* DESCKTOP */
+@media (min-width: 481px) and (min-width: 992px) {
+}
+
+.content_dashboard {
+  background-color: #121212;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 85px;
+  align-items: center;
+}
+
+.dashboard-title {
+  margin-top: 70px;
+  text-align: center;
+  color: #888888;
+  font-size: 2.5rem;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+}
+.product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.table {
+  width: 80%;
+  margin-top: 30px;
+  background: #1c1c1c;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table th {
+  padding: 1rem;
+  border-bottom: 2px solid #333;
+  color: #888888 !important;
+  text-transform: uppercase;
+  text-align: center;
+}
+.table td {
+  padding: 0.8rem;
+  color: #bbb;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table thead th {
+  background: #101010;
+}
+
+.table tbody tr:hover {
+  background-color: #2a2a2a;
+}
+
+.table input {
+  padding: 5px 15px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #333;
+  color: #888888;
+  transition: all 0.3s;
+}
+
+.table input:focus {
+  outline: none;
+  border-color: #888888;
+  box-shadow: 0 0 10px rgba(136, 136, 136, 0.7);
+}
+
+.table button.btn-danger {
+  background-color: #900;
+  color: #fff;
+  border: transparent;
+  margin-left: 10px;
+}
+
+.table button.btn-danger:hover {
+  background-color: #c00;
+  color: #fff;
+}
+.btn-add {
+  background-color: rgb(0, 153, 13) !important;
+  color: #fff;
+  border: transparent;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-add:hover {
+  background-color: rgb(102, 226, 0) !important;
+  color: #fff;
+}
+
+.table button.btn-put {
+  background-color: rgb(145, 70, 0);
+  color: #fff;
+  border: transparent;
+  margin-left: 10px;
+}
+
+.table button.btn-put:hover {
+  background-color: rgb(226, 154, 0);
+  color: #fff;
+}
+
+.btn-primary {
+  display: block;
+  margin: 2rem auto;
+  text-transform: uppercase;
+}
+
+.container {
+  background-color: transparent;
+}
+
+/* MOBILE */
+@media (min-width: 250px) and (max-width: 480px) {
+  .content_dashboard {
+    padding: 10px;
+    width: 100%;
+    margin-top: 67px;
+    box-sizing: border-box; /* Asegúrate de que el padding no añade al ancho total */
+  }
+
+  .dashboard-title {
+    font-size: 1.8rem;
+    margin-top: 20px;
+  }
+
+  .table {
+    width: 100%;
+    max-width: 100%; /* Asegurarnos de que la tabla no exceda el ancho de la pantalla */
+    display: block; /* Convertimos la tabla en bloque para permitir el overflow-x */
+    overflow-x: auto; /* Permite el desplazamiento si es necesario */
+    border-collapse: collapse;
+  }
+
+  .product-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.3rem;
+  }
+
+  .btn-add,
+  .table button {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  /* Esta regla evita que cualquier elemento exceda el ancho de la pantalla */
+  * {
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+}

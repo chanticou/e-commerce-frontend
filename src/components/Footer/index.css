@@ -1,0 +1,106 @@
+/* DESCKTOP */
+@media (min-width: 481px) and (min-width: 992px) {
+  .footer-container {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+    opacity: 0.9;
+    font-family: "Arial", sans-serif;
+  }
+
+  .footer-section {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .footer-section .about-section {
+    width: 50%;
+  }
+
+  .about-section h5,
+  .social-media-section h5 {
+    border-bottom: 2px solid white;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .social-media-section ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    padding: 0;
+  }
+
+  .social-media-section li {
+    margin-bottom: 10px;
+  }
+
+  .social-media-section img {
+    width: 35px;
+    height: -webkit-fill-available;
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+
+  .social-media-section img:hover {
+    transform: scale(1.2);
+  }
+}
+
+/* MOBILE */
+@media (min-width: 250px) and (max-width: 480px) {
+  .footer-container {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+    opacity: 0.9;
+    flex-direction: column;
+    font-family: "Arial", sans-serif;
+  }
+
+  .footer-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .footer-section .about-section {
+    width: 100%;
+  }
+
+  .about-section h5,
+  .social-media-section h5 {
+    border-bottom: 2px solid white;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .social-media-section ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    padding: 0;
+  }
+
+  .social-media-section li {
+    margin-bottom: 10px;
+  }
+
+  .social-media-section img {
+    width: 35px;
+    height: -webkit-fill-available;
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+
+  .social-media-section img:hover {
+    transform: scale(1.2);
+  }
+}

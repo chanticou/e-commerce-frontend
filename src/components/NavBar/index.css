@@ -1,0 +1,15 @@
+/* DESCKTOP */
+@media (min-width: 481px) and (min-width: 992px) {
+  .logo {
+    width: 100px;
+  }
+}
+
+/* MOBILE */
+@media (min-width: 250px) and (max-width: 480px) {
+  .logo {
+    width: 200px;
+    opacity: 1.2857;
+    transition: width 0.5s ease;
+  }
+}

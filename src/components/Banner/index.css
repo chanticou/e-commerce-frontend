@@ -1,0 +1,115 @@
+/* .promoBanner {
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 20px 0;
+  cursor: pointer;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.promoText {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  animation: slideFromLeft 1s forwards;
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.codeWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+
+.promoCode {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffd700; 
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  animation: slideFromRight 1s forwards 0.5s;
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+ */
+
+.futuristic-container {
+  position: relative;
+  height: 22px;
+  overflow: hidden; /* Es importante para que las líneas no excedan el contenedor */
+}
+
+.futuristic-line {
+  position: absolute;
+  bottom: -50%; /* Colocamos inicialmente las líneas fuera del contenedor */
+  left: -50%;
+  right: -50%;
+  height: 1px;
+
+  background: #ffd700; /* Color dorado */
+  opacity: 0.5;
+  animation: moveLine 10s infinite; /* Animación para mover la línea */
+}
+
+/* Ajustamos la posición y el tiempo de inicio de la animación para cada línea */
+.futuristic-line:nth-child(1) {
+  bottom: 20%;
+  animation-delay: 0s;
+}
+
+.futuristic-line:nth-child(2) {
+  bottom: 50%;
+  animation-delay: 2s;
+}
+
+.futuristic-line:nth-child(3) {
+  bottom: 80%;
+  animation-delay: 4s;
+}
+
+@keyframes moveLine {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

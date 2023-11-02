@@ -1,0 +1,11 @@
+/* Añadir estas líneas al principio de tu CSS */
+body,
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, Verdana, sans-serif;
+}

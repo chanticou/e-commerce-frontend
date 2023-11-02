@@ -1,0 +1,37 @@
+.modal-overlay {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+}
+
+.close-button {
+  padding: 12px 24px; /* Añadir más relleno */
+  margin-top: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s; /* Añadir efecto de transformación */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añadir sombra para un efecto 3D */
+}
+
+.close-button:hover {
+  background-color: #0056b3;
+  transform: scale(
+    1.05
+  ); /* Añadir un ligero crecimiento para el efecto hover */
+}

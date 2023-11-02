@@ -1,0 +1,51 @@
+.content_image {
+  display: flex;
+  flex-direction: row;
+}
+.image_auth_0 {
+  width: 30%;
+  height: 30%;
+  border-radius: 100px;
+  margin-left: 10px;
+}
+
+.image_auth_0:hover {
+  border-radius: 100%;
+  box-shadow: 0 0 0 4px #fdfcfc;
+  opacity: 0.9;
+}
+
+.content_auth_0 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-direction: row;
+}
+
+.onMouseOver {
+  max-width: 300px;
+  position: absolute;
+  top: 50px;
+  background: gray;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.onMouseOver span {
+  text-align: center;
+  /* color: #fff; */
+}
+
+.logout_button {
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.logout_button:hover {
+  color: black;
+}
