@@ -1,10 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   CreateOrderPayment,
   getSuccessFromBackend,
 } from "../../redux/actions/index";
-import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 export const TicketDetail = () => {

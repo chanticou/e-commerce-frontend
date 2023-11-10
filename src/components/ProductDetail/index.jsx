@@ -6,6 +6,7 @@ import {
   ProductDetailFunction,
   FilterByType,
   handleAddToCart,
+  showProductAddedPopup,
 } from "../../redux/actions/index";
 import Swal from "sweetalert2";
 import "./index.css";
@@ -18,16 +19,14 @@ export const ProductDetail = () => {
     const timer = setTimeout(() => {
       setShowSpinner(false); // Desactivar el spinner después de 2 segundos
     }, 2000);
-
     return () => clearTimeout(timer);
   }, []);
+  const [isAdded, setIsAdded] = useState(false);
 
-  const { id_product } = useParams();
   const { loginWithRedirect } = useAuth0();
+  const { id_product } = useParams();
   const { allProductsFilter, productDetail, cart, isAuthenticated } =
     useSelector((state) => state);
-
-  const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
     dispatch(ProductDetailFunction(id_product, allProductsFilter)).then(() =>
@@ -45,14 +44,13 @@ export const ProductDetail = () => {
         confirmButtonText: "Go to Login",
       }).then((result) => {
         if (result.isConfirmed) {
-          // Redirigir al usuario al inicio de sesión de Auth0
           loginWithRedirect();
         }
       });
     } else {
-      // Continuar con la lógica actual de añadir al carrito
       dispatch(handleAddToCart(productDetail, cart, isAuthenticated));
       setIsAdded(true);
+      dispatch(showProductAddedPopup(productDetail));
     }
   };
 
@@ -72,9 +70,10 @@ export const ProductDetail = () => {
           <div className="info-container">
             <h2 className="product-title">{productDetail.name}</h2>
             <p className="product-description">{productDetail.description}</p>
+            <p className="product-description">{productDetail.sku}</p>
             <div className="content-button_price">
               <div className="content-price">
-                <p className="product-price">${productDetail.priceUSDAmd}</p>
+                <p className="product-price">${productDetail.price}</p>
               </div>
 
               <div>

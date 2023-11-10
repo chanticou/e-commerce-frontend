@@ -7,13 +7,13 @@ import {
 import { Modal } from "../Modal";
 import { ProductForm } from "../ProductForm/index";
 import Button from "react-bootstrap/Button";
-
+import { SKUForm } from "../SKUForm/index";
+import Swal from "sweetalert2";
 import "./index.css";
 
 export const Dashboard = () => {
   const dispatch = useDispatch();
-  const { allProducts } = useSelector((state) => state);
-
+  const { allProductsFilter } = useSelector((state) => state);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
 
@@ -31,11 +31,17 @@ export const Dashboard = () => {
     setCurrentProduct(null);
     setIsModalOpen(true);
   };
+
   const deleteById = (id_product) => {
     dispatch(HandleDeleteProductDB(id_product))
       .then(() => {
         dispatch(getAllProducts());
+        Swal.fire({
+          icon: "success",
+          title: "Producto eliminado con exito!",
+        });
       })
+
       .catch((error) => {
         console.error("Error eliminando el producto:", error);
       });
@@ -45,6 +51,8 @@ export const Dashboard = () => {
     <>
       <div className="content_dashboard">
         <h1 className="dashboard-title">Dashboard</h1>
+        <SKUForm />
+
         <button className="btn btn-add" onClick={openAddProductModal}>
           Agregar Producto
         </button>
@@ -52,13 +60,14 @@ export const Dashboard = () => {
           <thead>
             <tr>
               <th>Imagen</th>
+              <th>SKU</th>
               <th>Nombre</th>
               <th>Precio</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            {allProducts.map((product) => (
+            {allProductsFilter.map((product) => (
               <tr key={product.id}>
                 <td>
                   <img
@@ -67,9 +76,10 @@ export const Dashboard = () => {
                     className="product-image"
                   />
                 </td>
+                <td className="td">{product.sku}</td>
 
                 <td className="td">{product.name}</td>
-                <td className="td">{product.priceUSDAmd}</td>
+                <td className="td">{product.price}</td>
 
                 <td>
                   <Button

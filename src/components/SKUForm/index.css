@@ -4,23 +4,14 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  z-index: 0;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .label-product {
   margin-bottom: 15px;
   font-weight: 600;
-}
-.label-product__oferta {
-  display: flex;
-  color: #fff;
-  font-size: 1.5rem;
-}
-.price-strike-through input {
-  text-decoration: line-through;
 }
 
 .input-product {
@@ -51,4 +42,10 @@
 
 .button-product:hover {
   background-color: #0056b3;
+}
+
+.sku_input {
+  margin-bottom: 10px;
+  border-radius: 2px;
+  padding: 10px 20px;
 }

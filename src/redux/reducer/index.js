@@ -11,8 +11,12 @@ const initialState = {
   categoryProducts: [],
   isAuthenticated: false,
   currentPage: 1,
-  productsPerPage: 6,
+  productsPerPage: 9,
   totalProducts: 0,
+  productAddedPopup: {
+    show: false,
+    productName: "",
+  },
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -127,6 +131,20 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         currentPage: action.payload,
+      };
+
+    case actions.SHOW_PRODUCT_ADDED_POPUP:
+      return {
+        ...state,
+        productAddedPopup: {
+          show: true,
+          productName: action.payload,
+        },
+      };
+    case actions.GET_FILTER_SKU:
+      return {
+        ...state,
+        allProductsFilter: action.payload,
       };
     // case actions.CREATE_USER:
     //   return {

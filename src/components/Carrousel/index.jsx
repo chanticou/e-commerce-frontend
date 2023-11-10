@@ -3,6 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import image1 from "../../assets/images/image-1.jpg";
 import image2 from "../../assets/images/image-2.jpg";
 import image3 from "../../assets/images/image-3.jpg";
+import { WelcomeSection } from "../WelcomeSection";
 import "./index.css";
 
 export const CarrouselImages = () => {
@@ -37,6 +38,7 @@ export const CarrouselImages = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      <WelcomeSection />
     </>
   );
 };

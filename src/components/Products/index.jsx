@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./index.css";
 
 export const Products = ({ data }) => {
+  console.log(data, "DATAAAAAAAAAAAAAAAAAAAAAAAAAA");
   return (
     <div className="card">
       <Link className="href" to={`/productDetail/${data.id_Product}`}>

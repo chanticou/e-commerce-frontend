@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 import {
   GET_ALL_PRODUCTS,
   FILTER_BY_TYPE,
@@ -17,6 +17,8 @@ import {
   SET_CURRENT_PAGE,
   SET_PRODUCTS_PER_PAGE,
   CHANGE_PAGE,
+  SHOW_PRODUCT_ADDED_POPUP,
+  GET_FILTER_SKU,
 } from "../actions_types";
 
 export function getAllProducts() {
@@ -86,10 +88,10 @@ export function handleAddToCart(productDetail, cart, isAuthenticated) {
         productDetail["quantity"] += 1;
       } else {
         productDetail.quantity = 1;
-        productDetail["total"] = productDetail.priceUSDAmd;
+        productDetail["total"] = productDetail.price;
         cart.push(productDetail);
       }
-
+      console.log(cart);
       dispatch({
         type: ADD_TO_CART,
         payload: [...cart],
@@ -189,11 +191,11 @@ export function CreateProduct(product) {
   return async function (dispatch) {
     try {
       const formData = new FormData();
+      formData.append("sku", product.sku);
       formData.append("name", product.name);
-      formData.append("type", product.type);
-      formData.append("thumbnail", product.thumbnail);
-      formData.append("price", product.price);
       formData.append("description", product.description);
+      formData.append("price", product.price);
+      formData.append("thumbnail", product.thumbnail);
       formData.append("stock", product.stock);
 
       const url = "http://localhost:4000/createProduct";
@@ -301,6 +303,13 @@ export const changePage = (newPage) => {
   };
 };
 
+export const showProductAddedPopup = (product) => {
+  return {
+    type: SHOW_PRODUCT_ADDED_POPUP,
+    payload: product.name,
+  };
+};
+
 // PAYMENT BACKEND
 export function CreateOrderPayment(total, cart, user) {
   return async function (dispatch) {
@@ -311,7 +320,7 @@ export function CreateOrderPayment(total, cart, user) {
         cart: cart,
         user: user,
       });
-      console.log(response, "ARESPONDE");
+      console.log(response);
 
       if (response.data.redirectUrl) {
         window.location.href = response.data.redirectUrl;
@@ -329,18 +338,38 @@ export function CreateOrderPayment(total, cart, user) {
   };
 }
 
-export const getSuccessFromBackend = () => {
-  return async (dispatch) => {
+export function searchProductBySKU(sku, allProducts, allProductsFilter) {
+  return async function (dispatch) {
     try {
-      const response = await axios.get("/success");
-      // console.log(navigation);
-      console.log(response, "AKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
-      if (response.data === "Success") {
-        // navigation.navigate("/");
-        console.log("entro==============================0");
+      let filterSku;
+      if (sku) {
+        filterSku = allProductsFilter.filter((el) => el.sku.includes(sku));
+      } else {
+        filterSku = allProducts;
       }
-    } catch (error) {
-      console.error("Hubo un error al obtener datos:", error);
+
+      dispatch({
+        type: GET_FILTER_SKU,
+        payload: filterSku,
+      });
+    } catch (err) {
+      console.log(err);
     }
   };
-};
+}
+
+// export const getSuccessFromBackend = () => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.get("/success");
+//       // console.log(navigation);
+//       console.log(response, "AKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
+//       if (response.data === "Success") {
+//         // navigation.navigate("/");
+//         console.log("entro==============================0");
+//       }
+//     } catch (error) {
+//       console.error("Hubo un error al obtener datos:", error);
+//     }
+//   };
+// };

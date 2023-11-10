@@ -12,7 +12,9 @@ import { WhatsAppLink } from "./components/WhatsApp";
 import { Footer } from "./components/Footer";
 import { Spinner } from "./components/Spinner";
 import { TicketDetail } from "./components/TicketDetail";
-import { SuccessPayment } from "./components/SuccessPayment";
+import { PaymentApproved } from "./components/PaymentApproved";
+import { PaymentFailure } from "./components/PaymentFailure";
+import { About } from "./components/About";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -41,7 +43,6 @@ function App() {
                 <>
                   <CarrouselImages />
                   <Banner />
-
                   <ContentProducts />
                 </>
               }
@@ -54,8 +55,9 @@ function App() {
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/ticketDetail" element={<TicketDetail />} />
-
-            <Route path="/success" element={<SuccessPayment />} />
+            <Route path="/approved" element={<PaymentApproved />} />
+            <Route path="/failure" element={<PaymentFailure />} />
+            <Route path="/about" element={<About />} />
           </Routes>
           <WhatsAppLink />
           <Footer />

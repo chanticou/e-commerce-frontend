@@ -1,7 +1,11 @@
 /* DESCKTOP */
 @media (min-width: 481px) and (min-width: 992px) {
   .logo {
-    width: 100px;
+    width: 250px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    /* padding-bottom: 20px; */
   }
 }
 

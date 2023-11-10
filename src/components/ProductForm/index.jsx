@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { CreateProduct, UpdateProduct } from "../../redux/actions/index";
+import Swal from "sweetalert2";
 import "./index.css";
 
 export const ProductForm = ({ product, closeModal }) => {
   const dispatch = useDispatch();
-
+  const [err, setErr] = useState(false);
   const [input, setInput] = useState(
     product || {
+      sku: "",
       name: "",
-      type: "",
-      thumbnail: null,
-      price: 0,
       description: "",
+      price: 0,
+      thumbnail: null,
       stock: 0,
+      oferta: false,
     }
   );
 
@@ -30,19 +32,46 @@ export const ProductForm = ({ product, closeModal }) => {
     e.preventDefault();
     if (product) {
       // Update product
-      console.log(product);
       dispatch(UpdateProduct(product.id_Product, input)).then(() => {
         if (closeModal) closeModal();
       });
     } else {
       // Create product
-      dispatch(CreateProduct(input)).then(() => {
-        if (closeModal) closeModal();
-      });
+      if (
+        !input.sku ||
+        !input.name ||
+        !input.description ||
+        !input.price ||
+        !input.thumbnail ||
+        !input.stock ||
+        !input.oferta
+      ) {
+        setErr(true);
+      } else {
+        dispatch(CreateProduct(input)).then(() => {
+          if (closeModal) closeModal();
+        });
+        Swal.fire({
+          icon: "success",
+          title: "Producto creado con exito!",
+        });
+        setErr(false);
+      }
     }
   };
+  console.log(input.oferta);
   return (
     <form className="form-product" onSubmit={handleSubmit}>
+      <label className="label-product">
+        <input
+          className="input-product"
+          type="text"
+          name="sku"
+          placeholder="Sku..."
+          value={input.sku.toUpperCase()}
+          onChange={handleChange}
+        />
+      </label>
       <label className="label-product">
         <input
           className="input-product"
@@ -57,10 +86,10 @@ export const ProductForm = ({ product, closeModal }) => {
         <input
           className="input-product"
           type="text"
-          name="type" // Cambio: Usar "thumbnail" como nombre
-          value={input.type}
-          placeholder="Tipo..."
+          name="description"
+          value={input.description}
           onChange={handleChange}
+          placeholder="Descripcion..."
         />
       </label>
       <input
@@ -80,16 +109,7 @@ export const ProductForm = ({ product, closeModal }) => {
           onChange={handleChange}
         />
       </label>
-      <label className="label-product">
-        <input
-          className="input-product"
-          type="text"
-          name="description"
-          value={input.description}
-          onChange={handleChange}
-          placeholder="Descripcion..."
-        />
-      </label>
+
       <label className="label-product">
         <input
           className="input-product"
@@ -100,6 +120,19 @@ export const ProductForm = ({ product, closeModal }) => {
           placeholder="Stock..."
         />
       </label>
+      <label className="label-product__oferta">
+        Oferta:
+        <input
+          className="input-product"
+          type="checkbox"
+          name="oferta"
+          checked={input.oferta}
+          onChange={(e) => setInput({ ...input, oferta: e.target.checked })}
+        />
+      </label>
+      {err && (
+        <p style={{ color: "red" }}>Por favor ingresar todos los datos</p>
+      )}
       <button className="button-product" type="submit">
         DONE
       </button>

@@ -7,6 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { ProductAddedPopup } from "../ProductAddedPopup/index";
 import {
   GetCategory,
   GetCategoryProduct,
@@ -19,10 +20,11 @@ export const NavBar = () => {
   const dispatch = useDispatch();
   const [navbarVisible, setNavbarVisible] = useState(true);
 
-  const { allProducts, cart, isAdmin, categories } = useSelector(
+  const { cart, isAdmin, categories, productAddedPopup } = useSelector(
     (state) => state
   );
 
+  console.log(productAddedPopup);
   useEffect(() => {
     dispatch(GetCategory());
     let prevScrollPos = window.pageYOffset;
@@ -41,6 +43,18 @@ export const NavBar = () => {
 
   return (
     <>
+      {productAddedPopup.show && (
+        <ProductAddedPopup
+          show={productAddedPopup.show}
+          productName={productAddedPopup.productName}
+          onHide={() => {
+            // Aquí debes definir lo que ocurre cuando se cierra el popup.
+            // Por ejemplo, puedes actualizar el estado para ocultar el popup:
+            // dispatch(hideProductAddedPopup());
+            // O simplemente cambiar un estado local para no mostrar el popup.
+          }}
+        />
+      )}
       <Navbar
         bg="dark"
         expand="lg"
@@ -55,7 +69,7 @@ export const NavBar = () => {
           <Navbar.Brand href="#home">
             <img
               className="logo"
-              src="https://res.cloudinary.com/dg05pzjsq/image/upload/v1698490564/58483029cef1014c0b5e4a91_gqpik4.png"
+              src="https://res.cloudinary.com/dg05pzjsq/image/upload/v1699380311/Logo_IA_2_sfzyha.png"
               alt="Logo"
             ></img>
           </Navbar.Brand>
@@ -65,6 +79,9 @@ export const NavBar = () => {
               {/* First link */}
               <Nav.Link as={Link} to="/">
                 <Button variant="outline-light">Home</Button>
+              </Nav.Link>
+              <Nav.Link as={Link} to="/about">
+                <Button variant="outline-light">Servicio Técnico</Button>
               </Nav.Link>
 
               {categories?.map((el) => (
@@ -84,7 +101,7 @@ export const NavBar = () => {
               ))}
               {/* Thrist link */}
               <Nav.Link>
-                {/* <Button
+                <Button
                   variant="outline-light"
                   onClick={(e) => {
                     e.preventDefault();
@@ -92,7 +109,7 @@ export const NavBar = () => {
                   }}
                 >
                   All
-                </Button> */}
+                </Button>
               </Nav.Link>
 
               {/* cuarto link */}
@@ -103,7 +120,9 @@ export const NavBar = () => {
               )}
 
               {/* login link */}
-              <Nav.Link>{/* <Loguin /> */}</Nav.Link>
+              <Nav.Link>
+                <Loguin />
+              </Nav.Link>
 
               {/* cart link */}
               <Nav.Link as={Link} to="/cart">
