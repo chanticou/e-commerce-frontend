@@ -15,7 +15,7 @@
 .custom-text {
   position: absolute;
   letter-spacing: 2px;
-  top: -450px;
+  top: -400px;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2.5em;
@@ -29,7 +29,7 @@
 .custom-text_2 {
   position: absolute;
   letter-spacing: 2px;
-  top: -400px;
+  top: -350px;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2.5em;

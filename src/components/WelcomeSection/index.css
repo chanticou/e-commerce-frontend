@@ -1,4 +1,7 @@
 /* WELCOME US */
+.html {
+  scroll-behavior: smooth;
+}
 #welcome-section {
   padding: 50px 0;
   background: #ffffff;

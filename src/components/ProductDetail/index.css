@@ -10,7 +10,7 @@
     height: 532px;
     border-radius: 10px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    margin-top: 100px;
+    margin-top: 170px;
   }
 
   .image-container {
@@ -18,24 +18,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* position: relative; */
   }
 
   .product-image_detail {
-    max-width: 100%;
+    max-width: 310px;
     height: auto;
   }
 
   .info-container {
-    flex: 2;
+    flex: 1 1;
     margin-top: 128px;
   }
 
   /* Estilos para el título con efecto de gradiente */
   .product-title {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 34px;
+    font-weight: unset;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #141e30, #243b55); /* Gradiente */
+    background: linear-gradient(to right, #00b4db, #0083b0);
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -73,6 +75,31 @@
     background-color: #565656;
     transform: scale(1.05);
   }
+
+  /* CONTENT PRICE */
+  .product-price {
+    font-size: 1em;
+    color: #333;
+  }
+
+  .original-price {
+    text-decoration: line-through;
+    color: #777;
+    font-size: 20px;
+  }
+
+  .offert-price_product {
+    color: #333;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .offert-percentage {
+    font-size: 0.9em;
+    color: #4caf50;
+    font-weight: bold;
+    margin-left: 20px;
+  }
 }
 
 /* MOBILE */
@@ -91,18 +118,16 @@
   }
 
   .image-container {
+    width: 100%;
+    height: auto;
+    position: relative;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
-  .image-container {
-    width: 100%;
-    height: auto;
-  }
   .product-image_detail {
-    width: 250px;
+    width: 200px;
     height: auto;
   }
 

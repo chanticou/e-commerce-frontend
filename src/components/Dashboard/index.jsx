@@ -8,7 +8,6 @@ import { Modal } from "../Modal";
 import { ProductForm } from "../ProductForm/index";
 import Button from "react-bootstrap/Button";
 import { SKUForm } from "../SKUForm/index";
-import Swal from "sweetalert2";
 import "./index.css";
 
 export const Dashboard = () => {
@@ -16,7 +15,7 @@ export const Dashboard = () => {
   const { allProductsFilter } = useSelector((state) => state);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
-
+  console.log(allProductsFilter);
   const openModal = (product) => {
     setCurrentProduct(product);
     setIsModalOpen(true);
@@ -36,12 +35,7 @@ export const Dashboard = () => {
     dispatch(HandleDeleteProductDB(id_product))
       .then(() => {
         dispatch(getAllProducts());
-        Swal.fire({
-          icon: "success",
-          title: "Producto eliminado con exito!",
-        });
       })
-
       .catch((error) => {
         console.error("Error eliminando el producto:", error);
       });
@@ -79,7 +73,11 @@ export const Dashboard = () => {
                 <td className="td">{product.sku}</td>
 
                 <td className="td">{product.name}</td>
-                <td className="td">{product.price}</td>
+                {product.offertPrice ? (
+                  <td className="td">{product.offertPrice}</td>
+                ) : (
+                  <td className="td">{product.price}</td>
+                )}
 
                 <td>
                   <Button

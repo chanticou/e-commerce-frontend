@@ -19,6 +19,7 @@ import {
   CHANGE_PAGE,
   SHOW_PRODUCT_ADDED_POPUP,
   GET_FILTER_SKU,
+  GET_OFFERT,
 } from "../actions_types";
 
 export function getAllProducts() {
@@ -26,7 +27,7 @@ export function getAllProducts() {
     try {
       const url = "http://localhost:4000/getAllProducts";
       const result = await axios.get(url);
-
+      console.log(result);
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: result.data.payload,
@@ -190,6 +191,7 @@ export function LoginUser(input, isAuthenticated) {
 export function CreateProduct(product) {
   return async function (dispatch) {
     try {
+      console.log(product);
       const formData = new FormData();
       formData.append("sku", product.sku);
       formData.append("name", product.name);
@@ -197,6 +199,10 @@ export function CreateProduct(product) {
       formData.append("price", product.price);
       formData.append("thumbnail", product.thumbnail);
       formData.append("stock", product.stock);
+      formData.append("offert", product.offert);
+      if (product.offert) {
+        formData.append("offertPrice", product.offertPrice);
+      }
 
       const url = "http://localhost:4000/createProduct";
       const response = await axios.post(url, formData, {
@@ -313,6 +319,7 @@ export const showProductAddedPopup = (product) => {
 // PAYMENT BACKEND
 export function CreateOrderPayment(total, cart, user) {
   return async function (dispatch) {
+    console.log(total, cart, user);
     try {
       const url = `http://localhost:4000/createOrder`;
       let response = await axios.post(url, {
@@ -355,6 +362,14 @@ export function searchProductBySKU(sku, allProducts, allProductsFilter) {
     } catch (err) {
       console.log(err);
     }
+  };
+}
+export function OffertFunction(offert) {
+  return async function (dispatch) {
+    dispatch({
+      type: GET_OFFERT,
+      payload: offert,
+    });
   };
 }
 

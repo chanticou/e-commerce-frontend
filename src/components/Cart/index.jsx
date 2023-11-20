@@ -9,10 +9,15 @@ import "./index.css";
 
 export const Cart = () => {
   let dispatch = useDispatch();
-  const { cart, user } = useSelector((state) => state);
+  const { cart } = useSelector((state) => state);
 
-  const totalAllProducts = cart.reduce((accum, item) => accum + item.total, 0);
-
+  const totalAllProducts = cart.reduce((accum, item) => {
+    const priceToUse = item.offert ? item.offertPrice : item.price;
+    return accum + priceToUse * item.quantity;
+  }, 0);
+  const formatPrice = (price) => {
+    return price.toLocaleString("es-AR");
+  };
   return (
     <>
       {!cart.length ? (
@@ -34,8 +39,14 @@ export const Cart = () => {
               <div className="card-carts">
                 <p className="card-name_cart">{el.name}</p>
                 <p className="card-description_cart">{el.description}</p>
-                <p className="card-price_cart">${el.total}</p>
-                <p className="card-stock_cart">Stock: {el.stock}</p>
+                {el.offertPrice ? (
+                  <p className="card-price_cart">
+                    ${formatPrice(el.offertPrice)}
+                  </p>
+                ) : (
+                  <p className="card-price_cart">${formatPrice(el.total)}</p>
+                )}
+                {/* <p className="card-stock_cart">Stock: {el.stock}</p> */}
                 <button
                   className="card-delete_button"
                   onClick={() =>
@@ -76,7 +87,7 @@ export const Cart = () => {
           <div className="cart-summary">
             <div className="total">
               <span>Total:</span>
-              <span>${totalAllProducts}</span>
+              <span>${formatPrice(totalAllProducts)}</span>
             </div>
             <Link className="href" to={`/ticketDetail`}>
               <button className="proceed-to-checkout">Proceder al pago</button>

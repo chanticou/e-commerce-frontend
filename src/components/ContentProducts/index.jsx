@@ -4,19 +4,29 @@ import { getAllProducts, changePage } from "../../redux/actions/index";
 import { Products } from "../Products/index";
 import { Pagination } from "../Pagination/index";
 import "./index.css";
-
 export const ContentProducts = () => {
   const dispatch = useDispatch();
-  const { allProductsFilter, currentPage, productsPerPage, totalProducts } =
-    useSelector((state) => state);
+  const { allProductsFilter, currentPage, productsPerPage } = useSelector(
+    (state) => state
+  );
+
   useEffect(() => {
     dispatch(getAllProducts(currentPage, productsPerPage));
   }, [dispatch, currentPage, productsPerPage]);
 
+  const sortedProducts = allProductsFilter.sort((a, b) => {
+    if (a.offert && !b.offert) return -1;
+    if (!a.offert && b.offert) return 1;
+    return 0;
+  });
+
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
-  const productsToShow = allProductsFilter.slice(startIndex, endIndex);
-  console.log(productsToShow);
+  const productsToShow = sortedProducts.slice(startIndex, endIndex);
+
+  const totalProductsPerPage = allProductsFilter.length; // Número total de productos después de aplicar filtros
+  const totalPages = Math.ceil(totalProductsPerPage / productsPerPage);
+
   const handlePageChange = (newPage) => {
     dispatch(changePage(newPage));
   };
@@ -24,18 +34,15 @@ export const ContentProducts = () => {
   return (
     <>
       <div className="content-cards">
-        {productsToShow?.length &&
+        {productsToShow.length > 0 &&
           productsToShow.map((el) => (
             <Products key={el.id_Product} data={el} />
           ))}
       </div>
-      {/* <div className="coming-soon-container">
-        <h1 className="coming-soon-text">PRÓXIMAMENTE...</h1>
-      </div> */}
       <Pagination
-        currentPage={currentPage} //1
-        totalProducts={totalProducts} //6
-        productsPerPage={productsPerPage} //0
+        currentPage={currentPage}
+        totalPages={totalPages}
+        productsPerPage={productsPerPage}
         onPageChange={handlePageChange}
       />
     </>

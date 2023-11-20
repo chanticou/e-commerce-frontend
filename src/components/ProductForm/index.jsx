@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { CreateProduct, UpdateProduct } from "../../redux/actions/index";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  CreateProduct,
+  UpdateProduct,
+  OffertFunction,
+} from "../../redux/actions/index";
 import Swal from "sweetalert2";
 import "./index.css";
 
 export const ProductForm = ({ product, closeModal }) => {
   const dispatch = useDispatch();
+  const { allProducts } = useSelector((state) => state);
   const [err, setErr] = useState(false);
   const [input, setInput] = useState(
     product || {
@@ -15,7 +20,8 @@ export const ProductForm = ({ product, closeModal }) => {
       price: 0,
       thumbnail: null,
       stock: 0,
-      oferta: false,
+      offert: false,
+      offertPrice: 0,
     }
   );
 
@@ -26,6 +32,11 @@ export const ProductForm = ({ product, closeModal }) => {
     } else {
       setInput({ ...input, [name]: value });
     }
+  };
+
+  const handleChangeOffert = (e) => {
+    setInput({ ...input, offert: e.target.checked });
+    dispatch(OffertFunction(input.oferta));
   };
 
   const handleSubmit = (e) => {
@@ -43,8 +54,7 @@ export const ProductForm = ({ product, closeModal }) => {
         !input.description ||
         !input.price ||
         !input.thumbnail ||
-        !input.stock ||
-        !input.oferta
+        !input.stock
       ) {
         setErr(true);
       } else {
@@ -59,7 +69,7 @@ export const ProductForm = ({ product, closeModal }) => {
       }
     }
   };
-  console.log(input.oferta);
+
   return (
     <form className="form-product" onSubmit={handleSubmit}>
       <label className="label-product">
@@ -125,11 +135,23 @@ export const ProductForm = ({ product, closeModal }) => {
         <input
           className="input-product"
           type="checkbox"
-          name="oferta"
-          checked={input.oferta}
-          onChange={(e) => setInput({ ...input, oferta: e.target.checked })}
+          name="offert"
+          checked={input.offert}
+          onChange={(e) => handleChangeOffert(e)}
         />
       </label>
+      {input.offert && (
+        <label className="label-product">
+          <input
+            className="input-product"
+            type="number"
+            name="offertPrice"
+            value={input.offertPrice}
+            placeholder="Precio de Oferta..."
+            onChange={handleChange}
+          />
+        </label>
+      )}
       {err && (
         <p style={{ color: "red" }}>Por favor ingresar todos los datos</p>
       )}

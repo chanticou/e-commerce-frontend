@@ -17,6 +17,7 @@ const initialState = {
     show: false,
     productName: "",
   },
+  offertProduct: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -32,6 +33,8 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         allProductsFilter: action.payload,
+        totalProducts: action.payload.length,
+        currentPage: 1,
       };
     case actions.GET_PRODUCT_DETAIL:
       return {
@@ -115,6 +118,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         allProductsFilter: action.payload,
+        currentPage: 1,
       };
 
     case actions.SET_CURRENT_PAGE:
@@ -146,6 +150,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allProductsFilter: action.payload,
       };
+    case actions.GET_OFFERT:
+      return {
+        ...state,
+        offertProduct: action.payload,
+      };
+
     // case actions.CREATE_USER:
     //   return {
     //     users: action.payload,

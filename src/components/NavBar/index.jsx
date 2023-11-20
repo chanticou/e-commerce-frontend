@@ -20,11 +20,10 @@ export const NavBar = () => {
   const dispatch = useDispatch();
   const [navbarVisible, setNavbarVisible] = useState(true);
 
-  const { cart, isAdmin, categories, productAddedPopup } = useSelector(
+  const { cart, isAdmin, categories, productAddedPopup, offert } = useSelector(
     (state) => state
   );
 
-  console.log(productAddedPopup);
   useEffect(() => {
     dispatch(GetCategory());
     let prevScrollPos = window.pageYOffset;
@@ -41,18 +40,20 @@ export const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [dispatch]);
 
+  const scrollWelcomeSection = () => {
+    const section = document.getElementById("welcome-section");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       {productAddedPopup.show && (
         <ProductAddedPopup
           show={productAddedPopup.show}
           productName={productAddedPopup.productName}
-          onHide={() => {
-            // Aquí debes definir lo que ocurre cuando se cierra el popup.
-            // Por ejemplo, puedes actualizar el estado para ocultar el popup:
-            // dispatch(hideProductAddedPopup());
-            // O simplemente cambiar un estado local para no mostrar el popup.
-          }}
+          onHide={() => {}}
         />
       )}
       <Navbar
@@ -61,7 +62,7 @@ export const NavBar = () => {
         variant="dark"
         fixed="top"
         style={{
-          opacity: navbarVisible ? 0.7 : 0,
+          opacity: navbarVisible ? 0.8 : 0,
           transition: "opacity 0.5s ease",
         }}
       >
@@ -71,60 +72,34 @@ export const NavBar = () => {
               className="logo"
               src="https://res.cloudinary.com/dg05pzjsq/image/upload/v1699380311/Logo_IA_2_sfzyha.png"
               alt="Logo"
-            ></img>
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {/* First link */}
               <Nav.Link as={Link} to="/">
-                <Button variant="outline-light">Home</Button>
+                Home
               </Nav.Link>
               <Nav.Link as={Link} to="/about">
-                <Button variant="outline-light">Servicio Técnico</Button>
+                Servicio Técnico
               </Nav.Link>
-
-              {categories?.map((el) => (
-                <>
-                  {/* Second link */}
-                  <Nav.Link>
-                    <Button
-                      variant="outline-light"
-                      onClick={() =>
-                        dispatch(GetCategoryProduct(el.id_Category))
-                      }
-                    >
-                      {el.type}
-                    </Button>
-                  </Nav.Link>
-                </>
-              ))}
-              {/* Thrist link */}
-              <Nav.Link>
-                <Button
-                  variant="outline-light"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(FilterByType("All"));
-                  }}
-                >
-                  All
-                </Button>
+              <Nav.Link
+                style={{ cursor: "pointer" }}
+                as="div"
+                onClick={() => scrollWelcomeSection()}
+              >
+                Nosotros
               </Nav.Link>
-
-              {/* cuarto link */}
+            </Nav>
+            <Nav className="ms-auto">
               {isAdmin && (
                 <Nav.Link as={Link} to="/dashboard">
                   <Button variant="outline-light">Dashboard</Button>
                 </Nav.Link>
               )}
-
-              {/* login link */}
               <Nav.Link>
                 <Loguin />
               </Nav.Link>
-
-              {/* cart link */}
               <Nav.Link as={Link} to="/cart">
                 <AiOutlineShoppingCart
                   className="cart-icon"
@@ -136,80 +111,26 @@ export const NavBar = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
 
-      {/* <Navbar
-        bg="dark"
-        expand="lg"
-        variant="dark"
-        fixed="top"
-        style={{
-          opacity: navbarVisible ? 0.7 : 0,
-          transition: "opacity 0.5s ease",
-        }}
-      >
+        {/* Filtros de búsqueda */}
         <Container>
- 
-          <Navbar.Brand href="#home">
-      
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse className="collapse-navBar" id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link as={Link} to="/">
-                Home
+          <Nav className="me-auto mt-2">
+            {categories?.map((category) => (
+              <Nav.Link
+                key={category.id_Category}
+                onClick={() =>
+                  dispatch(GetCategoryProduct(category.id_Category))
+                }
+              >
+                {category.type}
               </Nav.Link>
-              {categories?.map((el) => (
-                <ul key={el.id_Category}>
-                  <Nav.Link>
-                    <Button
-                      variant="outline-light"
-                      onClick={() =>
-                        dispatch(GetCategoryProduct(el.id_Category))
-                      }
-                    >
-                      {el.type}
-                    </Button>
-                  </Nav.Link>
-                </ul>
-              ))}
-              <ul>
-                <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(FilterByType("All"));
-                  }}
-                >
-                  All
-                </Button>
-              </ul>
-              {isAdmin && (
-                <Nav.Link as={Link} to="/dashboard">
-                  Dashboard
-                </Nav.Link>
-              )}
-            </Nav>
-          </Navbar.Collapse>
-
-
-          <Navbar.Brand as={Link} to="/">
-            <div className="navbar-loguin_cart">
-              <Nav.Link as={Link} to="/cart">
-                <AiOutlineShoppingCart
-                  className="cart-icon"
-                  size={35}
-                  style={{ color: "white" }}
-                />
-              </Nav.Link>
-              <span className="quantity">{cart.length}</span>
-            </div>
-          </Navbar.Brand>
-          <Nav.Link>
-            <Loguin />
-          </Nav.Link>
-   
+            ))}
+            <Nav.Link onClick={() => dispatch(FilterByType("All"))}>
+              All
+            </Nav.Link>
+          </Nav>
         </Container>
-      </Navbar> */}
+      </Navbar>
     </>
   );
 };

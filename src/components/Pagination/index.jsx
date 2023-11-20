@@ -2,19 +2,16 @@ import "./index.css";
 
 export const Pagination = ({
   currentPage,
-  totalProducts,
+  totalPages,
   productsPerPage,
   onPageChange,
 }) => {
-  console.log(totalProducts, "totalProducts");
-  const totalPages = Math.ceil(totalProducts / productsPerPage);
-
   return (
     <div className="pagination-container">
       {currentPage > 1 && (
         <button
           className="pagination-btn"
-          onClick={() => onPageChange(currentPage - 1)}
+          onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         >
           &lt; Prev
         </button>
@@ -33,7 +30,7 @@ export const Pagination = ({
       {currentPage < totalPages && (
         <button
           className="pagination-btn"
-          onClick={() => onPageChange(currentPage + 1)}
+          onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         >
           Next &gt;
         </button>

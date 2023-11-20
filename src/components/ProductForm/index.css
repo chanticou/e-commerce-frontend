@@ -16,11 +16,8 @@
 }
 .label-product__oferta {
   display: flex;
-  color: #fff;
+  color: #dadada;
   font-size: 1.5rem;
-}
-.price-strike-through input {
-  text-decoration: line-through;
 }
 
 .input-product {

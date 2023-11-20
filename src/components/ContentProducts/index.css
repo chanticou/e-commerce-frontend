@@ -96,4 +96,9 @@ body {
   .coming-soon-text {
     font-size: 2rem;
   }
+
+  .content-cards {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
 }

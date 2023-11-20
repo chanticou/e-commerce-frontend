@@ -10,13 +10,18 @@ import "./index.css";
 export const TicketDetail = () => {
   let dispatch = useDispatch();
   const { cart, user } = useSelector((state) => state);
-  const navigate = useNavigate();
-  const totalAllProducts = cart.reduce((accum, item) => accum + item.total, 0);
 
+  const totalAllProducts = cart.reduce((accum, item) => {
+    const priceToUse = item.offert ? item.offertPrice : item.price;
+    return accum + priceToUse * item.quantity;
+  }, 0);
   const handlePayment = () => {
     dispatch(CreateOrderPayment(totalAllProducts, cart, user));
   };
 
+  const formatPrice = (price) => {
+    return price.toLocaleString("es-AR");
+  };
   return (
     <div className="ticket-container">
       <h2>Resumen de Orden</h2>
@@ -28,7 +33,13 @@ export const TicketDetail = () => {
           <div className="ticket-details">
             <p className="ticket-name">{item.name}</p>
             <p className="ticket-description">{item.description}</p>
-            <p className="ticket-price">${item.total}</p>
+            {item.offertPrice ? (
+              <p className="card-price_cart">
+                ${formatPrice(item.offertPrice)}
+              </p>
+            ) : (
+              <p className="card-price_cart">${formatPrice(item.total)}</p>
+            )}
             <p className="ticket-quantity">Cantidad: {item.quantity}</p>
           </div>
         </div>
@@ -36,7 +47,7 @@ export const TicketDetail = () => {
       <div className="ticket-summary">
         <div className="total-amount">
           <span>Total:</span>
-          <span>${totalAllProducts}</span>
+          <span>${formatPrice(totalAllProducts)}</span>
         </div>
         <button className="confirm-button" onClick={handlePayment}>
           Confirmar y Pagar

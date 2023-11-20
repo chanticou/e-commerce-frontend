@@ -9,15 +9,16 @@ import {
   showProductAddedPopup,
 } from "../../redux/actions/index";
 import Swal from "sweetalert2";
+import ReactImageZoom from "react-image-zoom";
 import "./index.css";
 
 export const ProductDetail = () => {
   let dispatch = useDispatch();
-  const [showSpinner, setShowSpinner] = useState(true); // Establecer inicialmente a true para mostrar el spinner primero
+  const [showSpinner, setShowSpinner] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowSpinner(false); // Desactivar el spinner después de 2 segundos
+      setShowSpinner(false);
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
@@ -34,9 +35,9 @@ export const ProductDetail = () => {
     );
     dispatch(FilterByType());
   }, [id_product]);
+
   const handleAdd = () => {
     if (!isAuthenticated) {
-      // Mostrar el popup SweetAlert2 para informar al usuario
       Swal.fire({
         icon: "error",
         title: "Authentication Required",
@@ -54,10 +55,14 @@ export const ProductDetail = () => {
     }
   };
 
+  const formatPrice = (price) => {
+    return price.toLocaleString("es-AR");
+  };
+
   return (
     <>
       {showSpinner ? (
-        <div className="loading-spinner">Loading...</div> // Puedes reemplazar esto con tu propio spinner
+        <div className="loading-spinner">Loading...</div>
       ) : (
         <div className="detail-container">
           <div className="image-container">
@@ -73,7 +78,25 @@ export const ProductDetail = () => {
             <p className="product-description">{productDetail.sku}</p>
             <div className="content-button_price">
               <div className="content-price">
-                <p className="product-price">${productDetail.price}</p>
+                {productDetail.offert ? (
+                  <>
+                    <div className="content-productPrice_offertPrice">
+                      <p className="product-price original-price">
+                        ${formatPrice(productDetail.price)}
+                      </p>
+                      <p className="product-price offert-price">
+                        <span className="offert-price_product">
+                          $ {formatPrice(productDetail.offertPrice)}
+                        </span>
+                        <span className="offert-percentage">23% OFF</span>
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <p className="product-price">
+                    ${formatPrice(productDetail.price)}
+                  </p>
+                )}
               </div>
 
               <div>
