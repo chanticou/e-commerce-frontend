@@ -14,7 +14,8 @@ import { Spinner } from "./components/Spinner";
 import { TicketDetail } from "./components/TicketDetail";
 import { PaymentApproved } from "./components/PaymentApproved";
 import { PaymentFailure } from "./components/PaymentFailure";
-import { About } from "./components/About";
+import { TechnicalSupport } from "./components/TechnicalSupport";
+import { TermsAndConditions } from "./components/TermsAndConditions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -57,7 +58,11 @@ function App() {
             <Route path="/ticketDetail" element={<TicketDetail />} />
             <Route path="/approved" element={<PaymentApproved />} />
             <Route path="/failure" element={<PaymentFailure />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/TechnicalSupport" element={<TechnicalSupport />} />
+            {/* <Route
+              path="/termsAndConditions"
+              element={<TermsAndConditions />}
+            /> */}
           </Routes>
           <WhatsAppLink />
           <Footer />

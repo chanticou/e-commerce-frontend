@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts, changePage } from "../../redux/actions/index";
 import { Products } from "../Products/index";
 import { Pagination } from "../Pagination/index";
+import { BannerPayment } from "../BannerPayment/index";
 import "./index.css";
 export const ContentProducts = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ export const ContentProducts = () => {
         productsPerPage={productsPerPage}
         onPageChange={handlePageChange}
       />
+      <BannerPayment />
     </>
   );
 };

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
@@ -20,7 +20,7 @@ export const NavBar = () => {
   const dispatch = useDispatch();
   const [navbarVisible, setNavbarVisible] = useState(true);
 
-  const { cart, isAdmin, categories, productAddedPopup, offert } = useSelector(
+  const { cart, isAdmin, categories, productAddedPopup } = useSelector(
     (state) => state
   );
 
@@ -47,6 +47,18 @@ export const NavBar = () => {
     }
   };
 
+  const categoryNames = {
+    kit_pc_gamer: "Kit Gamers",
+    kit_pc_hogar_u_oficina: "Kit Hogar u Oficina",
+    combos_actualizacion: "Combos actualización",
+    teclado_mouse: "Teclado/Mouse",
+    conectividad_redes: "Conectividad/Redes",
+    pen_drives: "Pendrives",
+    note_books: "Notebooks",
+    auriculares_microfonos: "Auriculares/Microfonos",
+    memorias_ram: "Memorias ram",
+  };
+
   return (
     <>
       {productAddedPopup.show && (
@@ -62,17 +74,19 @@ export const NavBar = () => {
         variant="dark"
         fixed="top"
         style={{
-          opacity: navbarVisible ? 0.8 : 0,
+          opacity: navbarVisible ? 0.9 : 0,
           transition: "opacity 0.5s ease",
         }}
       >
         <Container>
           <Navbar.Brand href="#home">
-            <img
-              className="logo"
-              src="https://res.cloudinary.com/dg05pzjsq/image/upload/v1699380311/Logo_IA_2_sfzyha.png"
-              alt="Logo"
-            />
+            <div>
+              <img
+                className="logo"
+                src="https://res.cloudinary.com/dg05pzjsq/image/upload/v1699380311/Logo_IA_2_sfzyha.png"
+                alt="Logo"
+              />
+            </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -80,7 +94,7 @@ export const NavBar = () => {
               <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/about">
+              <Nav.Link as={Link} to="/TechnicalSupport">
                 Servicio Técnico
               </Nav.Link>
               <Nav.Link
@@ -111,8 +125,20 @@ export const NavBar = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-
-        {/* Filtros de búsqueda */}
+      </Navbar>
+      {/* Filtros de búsqueda */}
+      <Navbar
+        expand="lg"
+        className="custom-navbar"
+        style={{
+          opacity: navbarVisible ? 0.9 : 0,
+          transition: "opacity 0.5s ease",
+          position: "fixed",
+          top: "88px",
+          width: "100%",
+          zIndex: 999,
+        }}
+      >
         <Container>
           <Nav className="me-auto mt-2">
             {categories?.map((category) => (
@@ -122,7 +148,7 @@ export const NavBar = () => {
                   dispatch(GetCategoryProduct(category.id_Category))
                 }
               >
-                {category.type}
+                {categoryNames[category.type] || category.type}
               </Nav.Link>
             ))}
             <Nav.Link onClick={() => dispatch(FilterByType("All"))}>

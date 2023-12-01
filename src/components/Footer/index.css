@@ -1,8 +1,8 @@
 /* DESCKTOP */
 @media (min-width: 481px) and (min-width: 992px) {
   .footer-container {
-    background-color: rgba(0, 0, 0, 0.9);
-    color: white;
+    /* background-color: rgba(0, 0, 0, 0.9); */
+    color: rgb(54, 54, 54);
     display: flex;
     justify-content: space-between;
     padding: 30px 50px;
@@ -22,7 +22,7 @@
 
   .about-section h5,
   .social-media-section h5 {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid rgb(85, 70, 70);
     display: inline-block;
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -48,59 +48,83 @@
 
   .social-media-section img:hover {
     transform: scale(1.2);
+  }
+  /* DESKTOP y MOBILE */
+
+  /* ... otros estilos ... */
+
+  .terms-section h5 {
+    border-bottom: 2px solid rgb(85, 70, 70);
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .terms-section a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-size: 0.9em; /* Ajusta el tamaño del texto según sea necesario */
+  }
+
+  .terms-section a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  /* DESKTOP y MOBILE */
+
+  .footer-title {
+    color: rgb(85, 70, 70);
+    border-bottom: 2px solid rgb(85, 70, 70);
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .footer-link {
+    color: #0d6efd; /* O el color que prefieras para los enlaces */
+    text-decoration: none; /* Sin subrayado */
+    transition: color 0.3s; /* Transición suave para el color */
+  }
+
+  .footer-link:hover {
+    text-decoration: underline;
+    color: #ffffff;
+  }
+
+  .footer-section {
+    padding: 0 20px;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 }
 
 /* MOBILE */
-@media (min-width: 250px) and (max-width: 480px) {
+
+/* MOBILE */
+@media (max-width: 480px) {
   .footer-container {
-    background-color: rgba(0, 0, 0, 0.9);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    padding: 30px 50px;
-    opacity: 0.9;
+    padding: 20px;
     flex-direction: column;
-    font-family: "Arial", sans-serif;
   }
 
   .footer-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .footer-section .about-section {
-    width: 100%;
-  }
-
-  .about-section h5,
-  .social-media-section h5 {
-    border-bottom: 2px solid white;
-    display: inline-block;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
-
-  .social-media-section ul {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-    padding: 0;
+    width: 100%; /* Las secciones se expanden para ocupar el ancho completo en móviles */
+    padding: 10px 0; /* Ajusta el padding vertical para cada sección */
   }
 
   .social-media-section li {
-    margin-bottom: 10px;
+    /* Aumenta el tamaño de los íconos para una mejor accesibilidad en móviles */
+    width: 45px;
+    height: 45px;
   }
-
-  .social-media-section img {
-    width: 35px;
-    height: -webkit-fill-available;
-    transition: transform 0.3s;
-    cursor: pointer;
-  }
-
-  .social-media-section img:hover {
-    transform: scale(1.2);
+  .ul_footer {
+    display: flex;
+    align-content: space-around;
+    justify-content: flex-start;
+    padding: 0;
+    gap: 0 20px;
   }
 }

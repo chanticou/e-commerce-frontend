@@ -1,8 +1,11 @@
+import { ComingSoon } from "../ComingSoon/index";
 import "./index.css";
 
 export const WelcomeSection = () => {
   return (
     <>
+      <ComingSoon />
+
       <section id="welcome-section">
         <div className="container">
           <div className="welcome-content">
@@ -36,9 +39,6 @@ export const WelcomeSection = () => {
               Sobre todo, en tiempos en que cada inversión debe tener resultados
               acorde a ella.
             </p>
-            <a href="#contact" className="btn btn-primary">
-              MAS
-            </a>
           </div>
         </div>
       </section>

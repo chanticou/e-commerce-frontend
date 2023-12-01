@@ -1,0 +1,55 @@
+.coming-soon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  background-color: #fff; /* Fondo blanco */
+  color: #333; /* Texto oscuro para contraste */
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.coming-soon-title {
+  font-size: 4rem; /* Un poco más pequeño para pantallas blancas */
+  letter-spacing: 0.3rem;
+  color: #333; /* Color de texto oscuro */
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+}
+
+.coming-soon-description {
+  font-size: 1.2rem;
+  color: #666; /* Color de texto más claro para descripción */
+  max-width: 600px; /* Para mantener el contenido legible */
+  margin-top: 0.5rem;
+}
+
+/* Si deseas mantener el efecto de brillo, pero más sutil */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 8px #bbb, 0 0 12px #bbb;
+  }
+  to {
+    text-shadow: 0 0 10px #ccc, 0 0 15px #ccc;
+  }
+}
+
+/* Aplica el efecto de brillo al título */
+.coming-soon-title {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .coming-soon-title {
+    font-size: 2.5rem;
+  }
+
+  .coming-soon-description {
+    font-size: 1rem;
+  }
+}

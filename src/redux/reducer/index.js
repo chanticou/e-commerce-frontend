@@ -11,7 +11,7 @@ const initialState = {
   categoryProducts: [],
   isAuthenticated: false,
   currentPage: 1,
-  productsPerPage: 9,
+  productsPerPage: 12,
   totalProducts: 0,
   productAddedPopup: {
     show: false,

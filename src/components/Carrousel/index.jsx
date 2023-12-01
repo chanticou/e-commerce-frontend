@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import image1 from "../../assets/images/image-1.jpg";
 import image2 from "../../assets/images/image-2.jpg";
@@ -7,6 +7,10 @@ import { WelcomeSection } from "../WelcomeSection";
 import "./index.css";
 
 export const CarrouselImages = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Carousel>
@@ -14,7 +18,7 @@ export const CarrouselImages = () => {
           {/* La primera imagen del carrusel */}
           <img className="custom-image" src={image1} alt="Image 1" />
           <Carousel.Caption>
-            <h3 className="custom-text">TECNOLOGIA</h3>
+            {/* <h3 className="custom-text">TECNOLOGIA</h3> */}
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -25,7 +29,7 @@ export const CarrouselImages = () => {
             alt="Image 2"
           />
           <Carousel.Caption>
-            <h3 className="custom-text_2">FUTURO</h3>
+            {/* <h3 className="custom-text_2">FUTURO</h3> */}
             <p>Descubre la próxima generación de tecnología.</p>
           </Carousel.Caption>
         </Carousel.Item>

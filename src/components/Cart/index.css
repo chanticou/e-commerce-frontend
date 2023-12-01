@@ -5,6 +5,7 @@
   border: transparent;
   padding: 10px 20px;
   cursor: pointer;
+  width: 200px;
   border-radius: 5px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -60,20 +61,29 @@
   padding: 20px;
   width: 85%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  align-items: center;
+  align-items: stretch;
 }
 
 .content-image_cart {
+  flex: 0 0 auto; /* No crecer, no encoger, basado en el tamaño de la imagen */
+  width: 200px; /* Tamaño fijo para todas las imágenes */
+  height: 200px; /* Altura fija para mantener la consistencia */
+  background-size: cover; /* Cubrir el contenedor */
+  background-position: center; /* Centrar la imagen en el contenedor */
   margin-right: 25px;
 }
 
 .card-image_cart {
-  width: 200px;
-  height: auto;
+  width: 100%; /* Que tome el tamaño del contenedor padre */
+  height: 100%;
+  object-fit: cover; /* Esto asegurará que la imagen cubra el espacio sin distorsionarse */
 }
 
 .card-carts {
-  flex: 1;
+  flex: 1; /* Tomar todo el espacio disponible */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Espacio alrededor del contenido */
 }
 
 .card-name_cart {
@@ -93,11 +103,22 @@
 }
 
 .empty-cart {
-  margin-top: 100px;
+  margin-top: 20px;
 }
-
+.add-to-cart-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+link {
+  text-decoration: none;
+}
 /* Estilos generales del carrito */
-.card-cart {
+.card-carta {
   display: flex;
   flex-direction: column;
   gap: 20px;

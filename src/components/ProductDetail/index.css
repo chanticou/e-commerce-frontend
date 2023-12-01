@@ -3,6 +3,7 @@
   .detail-container {
     display: flex;
     max-width: 1200px;
+    flex-direction: row;
     margin: 50px auto;
     gap: 50px;
     padding: 20px;
@@ -10,7 +11,12 @@
     height: 532px;
     border-radius: 10px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    margin-top: 170px;
+    margin-top: 50px;
+  }
+
+  .info-content {
+    display: flex;
+    flex-direction: column;
   }
 
   .image-container {
@@ -18,15 +24,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* position: relative; */
-  }
-
-  .product-image_detail {
-    max-width: 310px;
-    height: auto;
   }
 
   .info-container {
+    flex: 1 1;
+    align-self: center;
+  }
+  .product-image_detail {
+    width: 80%;
+    height: auto;
+  }
+
+  .info-container_title {
     flex: 1 1;
     margin-top: 128px;
   }
@@ -125,9 +134,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    order: 2;
   }
+
   .product-image_detail {
-    width: 200px;
+    width: 90%;
     height: auto;
   }
 
@@ -135,22 +146,25 @@
     margin-top: 0;
     padding: 10px;
     overflow-y: auto;
+    order: 3;
+  }
+
+  .info-container_title {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    -webkit-text-fill-color: transparent !important;
+    order: 1;
   }
 
   .product-title {
-    margin-bottom: 15px;
-    font-size: 1rem;
-    background: linear-gradient(
-      to right,
-      #141e30,
-      #243b55
-    ); /* Gradiente de azul oscuro a azul medio */
+    font-size: 34px; /* Tamaño grande para escritorio */
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #00b4db, #0083b0);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: transparent; /* Esto hace que el texto tome el gradiente de fondo */
   }
-
   .product-price {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   .product-description {
     margin-bottom: 15px;
@@ -181,9 +195,23 @@
 
   .content-button_price {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     color: #ff4500;
+  }
+
+  .content-productPrice_offertPrice {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .offert-percentage {
+    font-size: 1.5em;
+    color: #00a650;
+    font-weight: 400;
+  }
+  .offert-price_product {
+    margin-right: 20px;
   }
 }

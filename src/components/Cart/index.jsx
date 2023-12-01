@@ -3,8 +3,8 @@ import {
   HandleDeleteProductCart,
   handleClickCounter,
 } from "../../redux/actions/index";
-import { Link } from "react-router-dom";
 import { BsFillCartXFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import "./index.css";
 
 export const Cart = () => {
@@ -24,9 +24,16 @@ export const Cart = () => {
         <div className="empty-cart">
           <BsFillCartXFill className="empty-cart-icon" />
           <p className="empty-cart-text">Carrito vacío</p>
+          <p>¡Parece que aún no has elegido lo que buscas!</p>
+          <button className="add-to-cart-button">
+            <Link className="add-to-cart-link" to="/">
+              Continuar comprando
+            </Link>
+          </button>
         </div>
       ) : (
         <div className="card-cart">
+          <h1>Carrito</h1>
           {cart.map((el) => (
             <div className="cart-item" key={el.id_Product}>
               <div className="content-image_cart">
