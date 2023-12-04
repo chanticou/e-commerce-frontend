@@ -4,12 +4,13 @@ import { getAllProducts, changePage } from "../../redux/actions/index";
 import { Products } from "../Products/index";
 import { Pagination } from "../Pagination/index";
 import { BannerPayment } from "../BannerPayment/index";
+import { FiltersCarrousel } from "../FiltersCarrousel/index";
 import "./index.css";
+
 export const ContentProducts = () => {
   const dispatch = useDispatch();
-  const { allProductsFilter, currentPage, productsPerPage } = useSelector(
-    (state) => state
-  );
+  const { allProductsFilter, currentPage, productsPerPage, categories } =
+    useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getAllProducts(currentPage, productsPerPage));
@@ -34,6 +35,9 @@ export const ContentProducts = () => {
 
   return (
     <>
+      <div>
+        <FiltersCarrousel categories={categories} />
+      </div>
       <div className="content-cards">
         {productsToShow.length > 0 &&
           productsToShow.map((el) => (

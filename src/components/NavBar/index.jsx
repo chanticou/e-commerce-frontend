@@ -47,17 +47,17 @@ export const NavBar = () => {
     }
   };
 
-  const categoryNames = {
-    kit_pc_gamer: "Kit Gamers",
-    kit_pc_hogar_u_oficina: "Kit Hogar u Oficina",
-    combos_actualizacion: "Combos actualización",
-    teclado_mouse: "Teclado/Mouse",
-    conectividad_redes: "Conectividad/Redes",
-    pen_drives: "Pendrives",
-    note_books: "Notebooks",
-    auriculares_microfonos: "Auriculares/Microfonos",
-    memorias_ram: "Memorias ram",
-  };
+  // const categoryNames = {
+  //   kit_pc_gamer: "Kit Gamers",
+  //   kit_pc_hogar_u_oficina: "Kit Hogar u Oficina",
+  //   combos_actualizacion: "Combos actualización",
+  //   teclado_mouse: "Teclado/Mouse",
+  //   conectividad_redes: "Conectividad/Redes",
+  //   pen_drives: "Pendrives",
+  //   note_books: "Notebooks",
+  //   auriculares_microfonos: "Auriculares/Microfonos",
+  //   memorias_ram: "Memorias ram",
+  // };
 
   return (
     <>
@@ -80,7 +80,7 @@ export const NavBar = () => {
       >
         <Container>
           <Navbar.Brand href="#home">
-            <div>
+            <div className="content_logo">
               <img
                 className="logo"
                 src="https://res.cloudinary.com/dg05pzjsq/image/upload/v1699380311/Logo_IA_2_sfzyha.png"
@@ -139,7 +139,7 @@ export const NavBar = () => {
           zIndex: 999,
         }}
       >
-        <Container>
+        {/* <Container>
           <Nav className="me-auto mt-2">
             {categories?.map((category) => (
               <Nav.Link
@@ -155,7 +155,7 @@ export const NavBar = () => {
               All
             </Nav.Link>
           </Nav>
-        </Container>
+        </Container> */}
       </Navbar>
     </>
   );

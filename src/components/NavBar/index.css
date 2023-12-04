@@ -85,19 +85,19 @@ body {
 /* MOBILE */
 @media (max-width: 480px) {
   .navbar-brand {
-    flex-grow: 1; /* Permite que la marca del navbar ocupe todo el espacio disponible */
-    text-align: center; /* Centra el contenido de la marca del navbar */
+    flex-grow: 1;
+    text-align: center;
   }
 
-  .navbar .navbar-brand .logo {
+  /* .navbar .navbar-brand .logo {
     width: 100%;
     max-width: 251px;
-  }
+  } */
 
   /* Ocultar los elementos que no queremos mostrar en móvil, si es necesario */
-  .navbar .me-auto.mt-2 {
+  /* .navbar .me-auto.mt-2 {
     display: none;
-  }
+  } */
 
   .navbar-toggle {
     /* Asegúrate de que el botón de toggling del navbar no esté centrado */
@@ -105,4 +105,38 @@ body {
     right: 10px; /* O el espacio que necesites */
     top: 10px; /* O el espacio que necesites */
   }
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .sidebar-filters {
+    width: 100%; /* Los filtros ocupan todo el ancho en móviles */
+    order: -1; /* Los filtros se mueven al principio */
+  }
+
+  .main-content {
+    order: 1; /* El contenido principal sigue a los filtros */
+  }
+}
+
+/* Añadido para estructurar la página principal */
+.main-layout {
+  display: flex;
+  flex-direction: row;
+  margin-top: 88px; /* Ajusta la altura de tu Navbar si es necesario */
+}
+
+/* Estilos para la barra lateral de filtros */
+.sidebar-filters {
+  width: 200px; /* Ajusta esto según tus necesidades */
+  padding: 1rem;
+  border-right: 1px solid #ccc; /* Estilo de separación, opcional */
+  height: 100vh;
+  overflow-y: auto; /* Para scroll si los filtros exceden la altura de la pantalla */
+}
+
+/* Estilos para el contenido principal */
+.main-content {
+  flex-grow: 1;
+  padding: 1rem;
 }
