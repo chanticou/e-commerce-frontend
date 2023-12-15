@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   HandleDeleteProductCart,
@@ -9,12 +10,21 @@ import "./index.css";
 
 export const Cart = () => {
   let dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const { cart } = useSelector((state) => state);
 
   const totalAllProducts = cart.reduce((accum, item) => {
     const priceToUse = item.offert ? item.offertPrice : item.price;
     return accum + priceToUse * item.quantity;
   }, 0);
+
   const formatPrice = (price) => {
     return price.toLocaleString("es-AR");
   };
@@ -33,7 +43,7 @@ export const Cart = () => {
         </div>
       ) : (
         <div className="card-cart">
-          <h1>Carrito</h1>
+          <h1 className="cart-name">Carrito</h1>
           {cart.map((el) => (
             <div className="cart-item" key={el.id_Product}>
               <div className="content-image_cart">
@@ -51,8 +61,13 @@ export const Cart = () => {
                     ${formatPrice(el.offertPrice)}
                   </p>
                 ) : (
-                  <p className="card-price_cart">${formatPrice(el.total)}</p>
+                  <p className="card-price_cart">
+                    Precio: ${formatPrice(el.price)}
+                  </p>
                 )}
+                <p className="card-price_cart">
+                  Subtotal: ${formatPrice(el.price * el.quantity)}
+                </p>
                 {/* <p className="card-stock_cart">Stock: {el.stock}</p> */}
                 <button
                   className="card-delete_button"

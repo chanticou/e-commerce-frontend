@@ -198,7 +198,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    color: #ff4500;
+    color: #565656;
   }
 
   .content-productPrice_offertPrice {
@@ -213,5 +213,148 @@
   }
   .offert-price_product {
     margin-right: 20px;
+  }
+}
+/* productos relacionados */
+.scroll-container_detail {
+  display: flex;
+  overflow-x: scroll;
+  align-items: center;
+  padding: 10px;
+  background: #ffffff;
+  justify-content: space-around;
+  position: relative;
+  white-space: nowrap;
+  margin-bottom: 50px;
+}
+
+.scroll-item_detail {
+  border-radius: 50%; /* Para hacer el ítem circular */
+  padding: 5px; /* Ajustar el relleno para dar espacio alrededor de la imagen */
+  position: relative;
+}
+
+.banner-icon_detail {
+  width: 120px; /* Ajustar el ancho de la imagen */
+  height: 120px; /* Ajustar el alto de la imagen */
+  border-radius: 50%; /* Hacer la imagen redonda */
+  overflow: hidden; /* Ocultar los bordes que sobresalgan del borde redondo */
+  display: flex; /* Utilizar flex para centrar la imagen */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  cursor: pointer;
+}
+.scroll-item_detail:hover .banner-icon_detail::before {
+  content: ""; /* Esto es necesario para generar el pseudo-elemento */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%; /* Redondo como la imagen */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Efecto suave al mostrar/ocultar */
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.25) 50%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-image 0.3s;
+}
+.banner-text {
+  display: flex; /* Utiliza flexbox para centrar el contenido */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  flex-direction: column; /* Alinea el contenido en columna */
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center; /* Centrar texto horizontalmente */
+  opacity: 0; /* Ocultar texto inicialmente */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  pointer-events: none; /* Evitar que el texto bloque el evento click en el ícono */
+  padding: 10px 0;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+
+.scroll-item_detail:hover .banner-text {
+  opacity: 1; /* Mostrar texto en hover */
+  /* Transición a un color de fondo más suave */
+  background-color: rgba(0, 0, 0, 0.25); /* Fondo menos intenso */
+  color: #ffffff;
+}
+.banner-icon_detail img {
+  max-width: 100%; /* Hacer que la imagen se ajuste al contenedor */
+  height: auto; /* Mantener la proporción de la imagen */
+  display: block; /* Asegura que la imagen llene el espacio */
+  transition: transform 0.3s ease-in-out;
+}
+.scroll-item_detail:hover .banner-icon_detail img {
+  transform: scale(1.05);
+}
+
+/* Oculta la barra de desplazamiento en todos los navegadores */
+.scroll-container_detail::-webkit-scrollbar {
+  display: none; /* para Safari y Chrome */
+}
+
+.scroll-container_detail {
+  -ms-overflow-style: none; /* para Internet Explorer, Edge */
+  scrollbar-width: none; /* para Firefox */
+}
+
+/* Optional: Add arrows for manual scrolling */
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 2rem; /* Adjust as needed */
+  z-index: 10;
+}
+
+.scroll-arrow.left {
+  left: 10px; /* Adjust as needed */
+}
+
+.scroll-arrow.right {
+  right: 10px; /* Adjust as needed */
+}
+
+.content-detail-title_products {
+  display: flex;
+  justify-content: center;
+}
+
+.detail-title_products {
+  font-size: 1.3rem;
+}
+
+/* mobile */
+/* MOBILE */
+@media (min-width: 250px) and (max-width: 480px) {
+  /* ... otros estilos móviles ... */
+
+  .banner-icon_detail {
+    width: 200px; /* Aumentar el ancho de la imagen */
+    height: 200px; /* Aumentar el alto de la imagen */
+    /* Resto de tus estilos */
+  }
+
+  /* Ajustar el tamaño de la fuente y otros estilos si es necesario */
+  .detail-title_products {
+    font-size: 1rem; /* Aumentar el tamaño de la fuente si es necesario */
+  }
+
+  /* Si necesitas que el contenedor de desplazamiento también sea más alto para acomodar las imágenes más grandes: */
+  .scroll-container_detail {
+    height: 50px; /* O especificar una altura para acomodar el tamaño de las imágenes aumentadas */
+    /* Resto de tus estilos */
   }
 }

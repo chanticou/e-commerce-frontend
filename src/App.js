@@ -20,7 +20,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
-  const [showSpinner, setShowSpinner] = useState(true); // Establecer inicialmente a true para mostrar el spinner primero
+  const [showSpinner, setShowSpinner] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {

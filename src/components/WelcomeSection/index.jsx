@@ -39,6 +39,27 @@ export const WelcomeSection = () => {
               Sobre todo, en tiempos en que cada inversión debe tener resultados
               acorde a ella.
             </p>
+            <div className="important-announcement">
+              <h3>Importante Anuncio</h3>
+              <p>
+                <strong>
+                  Debido a los últimos anuncios del Ministro de Economía,
+                </strong>{" "}
+                informamos que:
+              </p>
+              <ul>
+                <li>
+                  <strong>
+                    Queda suspendida toda operación on-line sin previa
+                    autorización del vendedor.
+                  </strong>
+                </li>
+                <li>Lamentamos los inconvenientes que esto pueda ocasionar.</li>
+              </ul>
+              <p>
+                Atentamente, <strong>Solsoft Computación</strong>
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -5,7 +5,7 @@ import "./index.css";
 
 export const FiltersCarrousel = ({ categories }) => {
   const dispatch = useDispatch();
-  console.log(categories);
+
   const categoryNames = {
     kit_pc_gamer: "Kit Gamers",
     kit_pc_hogar_u_oficina: "Kit Hogar u Oficina",

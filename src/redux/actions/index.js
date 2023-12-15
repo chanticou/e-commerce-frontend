@@ -25,7 +25,8 @@ import {
 export function getAllProducts() {
   return async function (dispatch) {
     try {
-      const url = "http://localhost:4000/getAllProducts";
+      const url = "https://solsoftcomputacion.com.ar/getAllProducts";
+
       const result = await axios.get(url);
       console.log(result);
       dispatch({
@@ -64,7 +65,8 @@ export function FilterByType(typeFilter) {
 export function ProductDetailFunction(id_product) {
   return async function (dispatch) {
     try {
-      const url = `http://localhost:4000/getProductById/${id_product}`;
+      const url = `https://solsoftcomputacion.com.ar/getProductById/${id_product}`;
+
       const result = await axios.get(url);
 
       if (result.data && result.data.payload) {
@@ -124,10 +126,11 @@ export function handleClickCounter(type_name, cart, product_id) {
     try {
       if (type_name === "increment") {
         cart = cart.map((el) => {
+          console.log(el, "MAS");
           if (el.id_Product === product_id) {
             let newQuantity = el.quantity + 1;
             let newStock = Math.max(el.stock - 1, 0);
-            let newTotal = newQuantity * el.priceUSDAmd;
+            let newTotal = newQuantity * el.price;
             return {
               ...el,
               quantity: newQuantity,
@@ -140,10 +143,11 @@ export function handleClickCounter(type_name, cart, product_id) {
       }
       if (type_name === "decrement") {
         cart = cart.map((el) => {
+          console.log(el, "MMENOS");
           if (el.id_Product === product_id) {
             let newQuantity = el.quantity - 1;
             let newStock = Math.max(el.stock + 1, 0);
-            let newTotal = el.total - el.priceUSDAmd;
+            let newTotal = newQuantity - el.price;
 
             return {
               ...el,
@@ -168,7 +172,7 @@ export function handleClickCounter(type_name, cart, product_id) {
 export function LoginUser(input, isAuthenticated) {
   return async function (dispatch) {
     try {
-      const url = "http://localhost:4000/signIn";
+      const url = "http://https://solsoftcomputacion.com.ar/signIn";
       const response = await axios.post(url, input);
 
       const user = response.data.payload.user;
@@ -204,7 +208,7 @@ export function CreateProduct(product) {
         formData.append("offertPrice", product.offertPrice);
       }
 
-      const url = "http://localhost:4000/createProduct";
+      const url = "https://solsoftcomputacion.com.ar/createProduct";
       const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -224,7 +228,7 @@ export function CreateProduct(product) {
 export function HandleDeleteProductDB(id_product) {
   return async function (dispatch) {
     try {
-      const url = `http://localhost:4000/deleteProduct/${id_product}`;
+      const url = `https://solsoftcomputacion.com.ar/deleteProduct/${id_product}`;
       await axios.delete(url);
 
       dispatch({
@@ -243,7 +247,7 @@ export function HandleDeleteProductDB(id_product) {
 export function UpdateProduct(id_product, input) {
   return async function (dispatch) {
     try {
-      const url = `http://localhost:4000/updateProduct/${id_product}`;
+      const url = `https://solsoftcomputacion.com.ar/updateProduct/${id_product}`;
       let response = await axios.put(url, input);
 
       dispatch({
@@ -259,7 +263,7 @@ export function UpdateProduct(id_product, input) {
 export function GetCategory() {
   return async function (dispatch) {
     try {
-      const url = `http://localhost:4000/categories`;
+      const url = `https://solsoftcomputacion.com.ar/categories`;
       let response = await axios.get(url);
       dispatch({
         type: GET_CATEGORY,
@@ -274,7 +278,7 @@ export function GetCategory() {
 export function GetCategoryProduct(categoryId) {
   return async function (dispatch) {
     try {
-      const url = `http://localhost:4000/products/category/${categoryId}`;
+      const url = `https://solsoftcomputacion.com.ar/products/category/${categoryId}`;
       let response = await axios.get(url);
 
       dispatch({
@@ -321,7 +325,7 @@ export function CreateOrderPayment(total, cart, user) {
   return async function (dispatch) {
     console.log(total, cart, user);
     try {
-      const url = `http://localhost:4000/createOrder`;
+      const url = `https://solsoftcomputacion.com.ar/createOrder`;
       let response = await axios.post(url, {
         total: total,
         cart: cart,

@@ -12,9 +12,12 @@ export const ContentProducts = () => {
   const { allProductsFilter, currentPage, productsPerPage, categories } =
     useSelector((state) => state);
 
+  // useEffect(() => {
+  //   dispatch(getAllProducts(currentPage, productsPerPage));
+  // }, [dispatch, currentPage, productsPerPage]);
   useEffect(() => {
-    dispatch(getAllProducts(currentPage, productsPerPage));
-  }, [dispatch, currentPage, productsPerPage]);
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   const sortedProducts = allProductsFilter.sort((a, b) => {
     if (a.offert && !b.offert) return -1;
@@ -26,7 +29,7 @@ export const ContentProducts = () => {
   const endIndex = startIndex + productsPerPage;
   const productsToShow = sortedProducts.slice(startIndex, endIndex);
 
-  const totalProductsPerPage = allProductsFilter.length; // Número total de productos después de aplicar filtros
+  const totalProductsPerPage = allProductsFilter.length;
   const totalPages = Math.ceil(totalProductsPerPage / productsPerPage);
 
   const handlePageChange = (newPage) => {

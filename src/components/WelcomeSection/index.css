@@ -51,3 +51,24 @@
     padding: 0 15px;
   }
 }
+
+.important-announcement {
+  background-color: #ffd700;
+  color: #000;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.important-announcement h3 {
+  margin-top: 0;
+}
+
+.important-announcement strong {
+  font-size: 1.1em;
+}
+
+li {
+  list-style: none;
+}

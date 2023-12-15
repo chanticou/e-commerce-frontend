@@ -5,20 +5,30 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   ProductDetailFunction,
   FilterByType,
+  GetCategoryProduct,
   handleAddToCart,
   showProductAddedPopup,
 } from "../../redux/actions/index";
 // import { TermsAndConditionsPopup } from "../TermsAndConditionsPopup/index";
+import { Spinner } from "../Spinner/index";
 import Swal from "sweetalert2";
 import "./index.css";
 
 export const ProductDetail = () => {
   let dispatch = useDispatch();
+
   const { loginWithRedirect } = useAuth0();
   const { id_product } = useParams();
-  const { allProductsFilter, productDetail, cart, isAuthenticated } =
-    useSelector((state) => state);
 
+  const {
+    allProductsFilter,
+    productDetail,
+    allProducts,
+    cart,
+    isAuthenticated,
+    categories,
+  } = useSelector((state) => state);
+  // console.log(productDetail, allProducts);
   const [showSpinner, setShowSpinner] = useState(true);
   const [isAdded, setIsAdded] = useState(false);
 
@@ -30,6 +40,7 @@ export const ProductDetail = () => {
 
   useEffect(() => {
     setShowSpinner(true);
+
     dispatch(ProductDetailFunction(id_product, allProductsFilter)).then(() =>
       setShowSpinner(false)
     );
@@ -120,6 +131,31 @@ export const ProductDetail = () => {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+          <div>
+            {/* console.log(el.categoryId, productDetail.categoryId) */}
+            <div className="content-detail-title_products">
+              <p className="detail-title_products">Productos relacionados</p>
+            </div>
+            <div className="scroll-container_detail">
+              {allProducts.length > 0 &&
+                allProducts.map(
+                  (el) =>
+                    el.categoryId === productDetail.categoryId && (
+                      <div
+                        className="scroll-item_detail"
+                        key={el.id_Category}
+                        onClick={() =>
+                          dispatch(GetCategoryProduct(el.id_Category))
+                        }
+                      >
+                        <div className="banner-icon_detail">
+                          <img src={el.thumbnail} alt={el.type} />
+                        </div>
+                      </div>
+                    )
+                )}
             </div>
           </div>
         </>

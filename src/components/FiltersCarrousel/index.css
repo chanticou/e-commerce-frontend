@@ -1,20 +1,17 @@
 .scroll-container {
   display: flex;
-  overflow-x: scroll; /* Changed from 'auto' to 'scroll' to always show scrolling */
-  align-items: center; /* This will vertically center your items */
+  overflow-x: scroll;
+  align-items: center;
   gap: 10px;
   padding: 10px;
-  background: #ffffff; /* This is your container background color */
-  /* background-color: #e7e7e7; */
+  background: #ffffff;
 
-  position: relative; /* Added */
-  white-space: nowrap; /* This will ensure your items stay in a line */
+  position: relative;
+  white-space: nowrap;
   margin-bottom: 50px;
 }
-/* ... Estilos existentes ... */
 
 .scroll-item {
-  /* ... Estilos existentes ... */
   border-radius: 50%; /* Para hacer el ítem circular */
   padding: 5px; /* Ajustar el relleno para dar espacio alrededor de la imagen */
   position: relative;

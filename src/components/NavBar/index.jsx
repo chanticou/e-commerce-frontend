@@ -8,11 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { ProductAddedPopup } from "../ProductAddedPopup/index";
-import {
-  GetCategory,
-  GetCategoryProduct,
-  FilterByType,
-} from "../../redux/actions/index";
+import { GetCategory } from "../../redux/actions/index";
 import { Loguin } from "../Loguin";
 import "./index.css";
 
@@ -20,9 +16,7 @@ export const NavBar = () => {
   const dispatch = useDispatch();
   const [navbarVisible, setNavbarVisible] = useState(true);
 
-  const { cart, isAdmin, categories, productAddedPopup } = useSelector(
-    (state) => state
-  );
+  const { cart, isAdmin, productAddedPopup } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(GetCategory());
@@ -37,6 +31,7 @@ export const NavBar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [dispatch]);
 
@@ -46,18 +41,6 @@ export const NavBar = () => {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  // const categoryNames = {
-  //   kit_pc_gamer: "Kit Gamers",
-  //   kit_pc_hogar_u_oficina: "Kit Hogar u Oficina",
-  //   combos_actualizacion: "Combos actualización",
-  //   teclado_mouse: "Teclado/Mouse",
-  //   conectividad_redes: "Conectividad/Redes",
-  //   pen_drives: "Pendrives",
-  //   note_books: "Notebooks",
-  //   auriculares_microfonos: "Auriculares/Microfonos",
-  //   memorias_ram: "Memorias ram",
-  // };
 
   return (
     <>
@@ -78,7 +61,7 @@ export const NavBar = () => {
           transition: "opacity 0.5s ease",
         }}
       >
-        <Container>
+        <Container className="container">
           <Navbar.Brand href="#home">
             <div className="content_logo">
               <img
@@ -89,7 +72,10 @@ export const NavBar = () => {
             </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse
+            className="custom-navbar-collapse"
+            id="basic-navbar-nav"
+          >
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">
                 Home
@@ -134,9 +120,10 @@ export const NavBar = () => {
           opacity: navbarVisible ? 0.9 : 0,
           transition: "opacity 0.5s ease",
           position: "fixed",
-          top: "88px",
+          top: "80px",
           width: "100%",
           zIndex: 999,
+          backgroundColor: "black",
         }}
       >
         {/* <Container>
