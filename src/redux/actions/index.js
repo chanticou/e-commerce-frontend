@@ -20,15 +20,17 @@ import {
   SHOW_PRODUCT_ADDED_POPUP,
   GET_FILTER_SKU,
   GET_OFFERT,
+  GET_ALL_PAYMENTS,
 } from "../actions_types";
 
 export function getAllProducts() {
   return async function (dispatch) {
     try {
-      const url = "https://solsoftcomputacion.com.ar/getAllProducts";
+      // const url = "https://solsoftcomputacion.com.ar/getAllProducts";
+      const url = "http://localhost:4000/getAllProducts";
 
       const result = await axios.get(url);
-      console.log(result);
+
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: result.data.payload,
@@ -65,7 +67,8 @@ export function FilterByType(typeFilter) {
 export function ProductDetailFunction(id_product) {
   return async function (dispatch) {
     try {
-      const url = `https://solsoftcomputacion.com.ar/getProductById/${id_product}`;
+      // const url = `https://solsoftcomputacion.com.ar/getProductById/${id_product}`;
+      const url = `http://localhost:4000/getProductById/${id_product}`;
 
       const result = await axios.get(url);
 
@@ -94,7 +97,7 @@ export function handleAddToCart(productDetail, cart, isAuthenticated) {
         productDetail["total"] = productDetail.price;
         cart.push(productDetail);
       }
-      console.log(cart);
+
       dispatch({
         type: ADD_TO_CART,
         payload: [...cart],
@@ -126,7 +129,6 @@ export function handleClickCounter(type_name, cart, product_id) {
     try {
       if (type_name === "increment") {
         cart = cart.map((el) => {
-          console.log(el, "MAS");
           if (el.id_Product === product_id) {
             let newQuantity = el.quantity + 1;
             let newStock = Math.max(el.stock - 1, 0);
@@ -143,7 +145,6 @@ export function handleClickCounter(type_name, cart, product_id) {
       }
       if (type_name === "decrement") {
         cart = cart.map((el) => {
-          console.log(el, "MMENOS");
           if (el.id_Product === product_id) {
             let newQuantity = el.quantity - 1;
             let newStock = Math.max(el.stock + 1, 0);
@@ -172,7 +173,9 @@ export function handleClickCounter(type_name, cart, product_id) {
 export function LoginUser(input, isAuthenticated) {
   return async function (dispatch) {
     try {
-      const url = "http://https://solsoftcomputacion.com.ar/signIn";
+      // const url = "https://solsoftcomputacion.com.ar/signIn";
+      const url = "http://localhost:4000/signIn";
+
       const response = await axios.post(url, input);
 
       const user = response.data.payload.user;
@@ -195,7 +198,6 @@ export function LoginUser(input, isAuthenticated) {
 export function CreateProduct(product) {
   return async function (dispatch) {
     try {
-      console.log(product);
       const formData = new FormData();
       formData.append("sku", product.sku);
       formData.append("name", product.name);
@@ -208,7 +210,9 @@ export function CreateProduct(product) {
         formData.append("offertPrice", product.offertPrice);
       }
 
-      const url = "https://solsoftcomputacion.com.ar/createProduct";
+      // const url = "https://solsoftcomputacion.com.ar/createProduct";
+      const url = "http://localhost:4000/createProduct";
+
       const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -228,7 +232,9 @@ export function CreateProduct(product) {
 export function HandleDeleteProductDB(id_product) {
   return async function (dispatch) {
     try {
-      const url = `https://solsoftcomputacion.com.ar/deleteProduct/${id_product}`;
+      // const url = `https://solsoftcomputacion.com.ar/deleteProduct/${id_product}`;
+      const url = `http://localhost:4000/deleteProduct/${id_product}`;
+
       await axios.delete(url);
 
       dispatch({
@@ -247,7 +253,9 @@ export function HandleDeleteProductDB(id_product) {
 export function UpdateProduct(id_product, input) {
   return async function (dispatch) {
     try {
-      const url = `https://solsoftcomputacion.com.ar/updateProduct/${id_product}`;
+      // const url = `https://solsoftcomputacion.com.ar/updateProduct/${id_product}`;
+      const url = `http://localhost:4000/updateProduct/${id_product}`;
+
       let response = await axios.put(url, input);
 
       dispatch({
@@ -263,7 +271,9 @@ export function UpdateProduct(id_product, input) {
 export function GetCategory() {
   return async function (dispatch) {
     try {
-      const url = `https://solsoftcomputacion.com.ar/categories`;
+      // const url = `https://solsoftcomputacion.com.ar/categories`;
+      const url = `http://localhost:4000/categories`;
+
       let response = await axios.get(url);
       dispatch({
         type: GET_CATEGORY,
@@ -278,7 +288,9 @@ export function GetCategory() {
 export function GetCategoryProduct(categoryId) {
   return async function (dispatch) {
     try {
-      const url = `https://solsoftcomputacion.com.ar/products/category/${categoryId}`;
+      // const url = `https://solsoftcomputacion.com.ar/products/category/${categoryId}`;
+      const url = `http://localhost:4000/products/category/${categoryId}`;
+
       let response = await axios.get(url);
 
       dispatch({
@@ -323,9 +335,10 @@ export const showProductAddedPopup = (product) => {
 // PAYMENT BACKEND
 export function CreateOrderPayment(total, cart, user) {
   return async function (dispatch) {
-    console.log(total, cart, user);
     try {
-      const url = `https://solsoftcomputacion.com.ar/createOrder`;
+      // const url = `https://solsoftcomputacion.com.ar/createOrder`;
+      const url = `http://localhost:4000/createOrder`;
+
       let response = await axios.post(url, {
         total: total,
         cart: cart,
@@ -376,19 +389,19 @@ export function OffertFunction(offert) {
     });
   };
 }
+export function GetAllPayments() {
+  return async function (dispatch) {
+    // const url = `https://solsoftcomputacion.com.ar/getAllPayments`;
+    const url = `http://localhost:4000/getAllPayments`;
 
-// export const getSuccessFromBackend = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get("/success");
-//       // console.log(navigation);
-//       console.log(response, "AKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
-//       if (response.data === "Success") {
-//         // navigation.navigate("/");
-//         console.log("entro==============================0");
-//       }
-//     } catch (error) {
-//       console.error("Hubo un error al obtener datos:", error);
-//     }
-//   };
-// };
+    try {
+      const response = await axios.get(url);
+      dispatch({
+        type: GET_ALL_PAYMENTS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error("Error al obtener todos los pagos:", error);
+    }
+  };
+}

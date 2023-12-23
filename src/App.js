@@ -16,6 +16,7 @@ import { PaymentApproved } from "./components/PaymentApproved";
 import { PaymentFailure } from "./components/PaymentFailure";
 import { TechnicalSupport } from "./components/TechnicalSupport";
 import { TermsAndConditions } from "./components/TermsAndConditions";
+import { Transactions } from "./components/Transactions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -59,6 +60,7 @@ function App() {
             <Route path="/approved" element={<PaymentApproved />} />
             <Route path="/failure" element={<PaymentFailure />} />
             <Route path="/TechnicalSupport" element={<TechnicalSupport />} />
+            <Route path="/transactions" element={<Transactions />} />
             {/* <Route
               path="/termsAndConditions"
               element={<TermsAndConditions />}

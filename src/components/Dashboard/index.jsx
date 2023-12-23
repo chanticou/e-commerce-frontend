@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   HandleDeleteProductDB,
   getAllProducts,
+  GetAllPayments,
 } from "../../redux/actions/index";
+import { Link } from "react-router-dom";
 import { Modal } from "../Modal";
 import { ProductForm } from "../ProductForm/index";
 import Button from "react-bootstrap/Button";
@@ -15,7 +17,7 @@ export const Dashboard = () => {
   const { allProductsFilter } = useSelector((state) => state);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
-  console.log(allProductsFilter);
+
   const openModal = (product) => {
     setCurrentProduct(product);
     setIsModalOpen(true);
@@ -50,6 +52,17 @@ export const Dashboard = () => {
         <button className="btn btn-add" onClick={openAddProductModal}>
           Agregar Producto
         </button>
+        <Link to="/transactions">
+          <button
+            className="btn btn-add"
+            onClick={() => dispatch(GetAllPayments())}
+          >
+            Transacciones
+          </button>
+        </Link>
+
+        {/* */}
+
         <table className="table">
           <thead>
             <tr>

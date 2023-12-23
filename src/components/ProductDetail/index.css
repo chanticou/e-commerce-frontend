@@ -61,7 +61,7 @@
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #ff4500; /* Naranja para resaltar */
+    color: #ff4500;
   }
 
   .product-stock {
@@ -157,11 +157,11 @@
   }
 
   .product-title {
-    font-size: 34px; /* Tamaño grande para escritorio */
+    font-size: 34px;
     margin-bottom: 20px;
     background: linear-gradient(to right, #00b4db, #0083b0);
     -webkit-background-clip: text;
-    color: transparent; /* Esto hace que el texto tome el gradiente de fondo */
+    color: transparent;
   }
   .product-price {
     font-size: 1rem;
@@ -229,32 +229,31 @@
 }
 
 .scroll-item_detail {
-  border-radius: 50%; /* Para hacer el ítem circular */
-  padding: 5px; /* Ajustar el relleno para dar espacio alrededor de la imagen */
+  border-radius: 50%;
+  padding: 5px;
   position: relative;
 }
 
 .banner-icon_detail {
-  width: 120px; /* Ajustar el ancho de la imagen */
-  height: 120px; /* Ajustar el alto de la imagen */
-  border-radius: 50%; /* Hacer la imagen redonda */
-  overflow: hidden; /* Ocultar los bordes que sobresalgan del borde redondo */
-  display: flex; /* Utilizar flex para centrar la imagen */
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 .scroll-item_detail:hover .banner-icon_detail::before {
-  content: ""; /* Esto es necesario para generar el pseudo-elemento */
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
-  border-radius: 50%; /* Redondo como la imagen */
+  border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s; /* Efecto suave al mostrar/ocultar */
+  transition: background-color 0.3s;
   background-image: radial-gradient(
     circle,
     rgba(0, 0, 0, 0.25) 50%,
@@ -265,34 +264,34 @@
   transition: background-image 0.3s;
 }
 .banner-text {
-  display: flex; /* Utiliza flexbox para centrar el contenido */
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
-  flex-direction: column; /* Alinea el contenido en columna */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   border-radius: 50%;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  text-align: center; /* Centrar texto horizontalmente */
-  opacity: 0; /* Ocultar texto inicialmente */
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
-  pointer-events: none; /* Evitar que el texto bloque el evento click en el ícono */
+  text-align: center;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
   padding: 10px 0;
   transition: opacity 0.3s, background-color 0.3s;
 }
 
 .scroll-item_detail:hover .banner-text {
-  opacity: 1; /* Mostrar texto en hover */
-  /* Transición a un color de fondo más suave */
-  background-color: rgba(0, 0, 0, 0.25); /* Fondo menos intenso */
+  opacity: 1;
+
+  background-color: rgba(0, 0, 0, 0.25);
   color: #ffffff;
 }
 .banner-icon_detail img {
-  max-width: 100%; /* Hacer que la imagen se ajuste al contenedor */
-  height: auto; /* Mantener la proporción de la imagen */
-  display: block; /* Asegura que la imagen llene el espacio */
+  max-width: 100%;
+  height: auto;
+  display: block;
   transition: transform 0.3s ease-in-out;
 }
 .scroll-item_detail:hover .banner-icon_detail img {
@@ -309,22 +308,21 @@
   scrollbar-width: none; /* para Firefox */
 }
 
-/* Optional: Add arrows for manual scrolling */
 .scroll-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 2rem; /* Adjust as needed */
+  font-size: 2rem;
   z-index: 10;
 }
 
 .scroll-arrow.left {
-  left: 10px; /* Adjust as needed */
+  left: 10px;
 }
 
 .scroll-arrow.right {
-  right: 10px; /* Adjust as needed */
+  right: 10px;
 }
 
 .content-detail-title_products {
@@ -336,25 +334,18 @@
   font-size: 1.3rem;
 }
 
-/* mobile */
 /* MOBILE */
 @media (min-width: 250px) and (max-width: 480px) {
-  /* ... otros estilos móviles ... */
-
   .banner-icon_detail {
-    width: 200px; /* Aumentar el ancho de la imagen */
-    height: 200px; /* Aumentar el alto de la imagen */
-    /* Resto de tus estilos */
+    width: 200px;
+    height: 200px;
   }
 
-  /* Ajustar el tamaño de la fuente y otros estilos si es necesario */
   .detail-title_products {
-    font-size: 1rem; /* Aumentar el tamaño de la fuente si es necesario */
+    font-size: 1rem;
   }
 
-  /* Si necesitas que el contenedor de desplazamiento también sea más alto para acomodar las imágenes más grandes: */
   .scroll-container_detail {
-    height: 50px; /* O especificar una altura para acomodar el tamaño de las imágenes aumentadas */
-    /* Resto de tus estilos */
+    height: 50px;
   }
 }

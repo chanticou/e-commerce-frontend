@@ -28,7 +28,7 @@ export const ProductDetail = () => {
     isAuthenticated,
     categories,
   } = useSelector((state) => state);
-  // console.log(productDetail, allProducts);
+
   const [showSpinner, setShowSpinner] = useState(true);
   const [isAdded, setIsAdded] = useState(false);
 
@@ -69,6 +69,7 @@ export const ProductDetail = () => {
       // setShowTermsPopup(true);
     } else {
       // El usuario está autenticado y ha aceptado los términos
+
       dispatch(handleAddToCart(productDetail, cart, isAuthenticated));
       setIsAdded(true);
       dispatch(showProductAddedPopup(productDetail));

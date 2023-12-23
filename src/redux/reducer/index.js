@@ -18,6 +18,7 @@ const initialState = {
     productName: "",
   },
   offertProduct: false,
+  getAllPayments: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -154,6 +155,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         offertProduct: action.payload,
+      };
+    case actions.GET_ALL_PAYMENTS:
+      return {
+        ...state,
+        getAllPayments: action.payload,
       };
 
     // case actions.CREATE_USER:

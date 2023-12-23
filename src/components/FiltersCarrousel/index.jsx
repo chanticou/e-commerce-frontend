@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { GetCategoryProduct } from "../../redux/actions/index"; // Reemplaza con la ruta correcta a tus acciones
+import { GetCategoryProduct } from "../../redux/actions/index";
 import "./index.css";
 
 export const FiltersCarrousel = ({ categories }) => {

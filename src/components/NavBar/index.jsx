@@ -62,7 +62,7 @@ export const NavBar = () => {
         }}
       >
         <Container className="container">
-          <Navbar.Brand href="#home">
+          <Navbar.Brand to="/">
             <div className="content_logo">
               <img
                 className="logo"
